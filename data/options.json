@@ -1,0 +1,19 @@
+{
+  "mqtt_ip": "192.168.111.10",
+  "mqtt_port": 1883,
+  "mqtt_authentication": true,
+  "mqtt_user": "mqtt",
+  "mqtt_pass": "homeassistant",
+  "Device_Zps_Enabled": false,
+  "Device_Zps_Address": "192.168.1.7",
+  "Device_Zps_Port": 8899,
+  "Device_Zps_MqttTopic": "SolarBoiler",
+  "Device_Pcwu_Enabled": true,
+  "Device_Pcwu_Address": "192.168.111.16",
+  "Device_Pcwu_Port": 8899,
+  "Device_Pcwu_MqttTopic": "Heatpump",
+  "Device_Pcwu2_Enabled": true,
+  "Device_Pcwu2_Address": "192.168.111.17",
+  "Device_Pcwu2_Port": 8899,
+  "Device_Pcwu2_MqttTopic": "Heatpump2"
+}

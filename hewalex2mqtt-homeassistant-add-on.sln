@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32929.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "hewalex", "hewalex\hewalex.pyproj", "{9456F882-D670-4318-BADE-1442B18FA8A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{52E0C04D-2701-471A-BFB7-A8A449CCABC5}"
+	ProjectSection(SolutionItems) = preProject
+		data\options.json = data\options.json
+		README.md = README.md
+		repository.yaml = repository.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9456F882-D670-4318-BADE-1442B18FA8A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9456F882-D670-4318-BADE-1442B18FA8A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A06614EE-6828-4D0E-AA3F-500E1589C72D}
+	EndGlobalSection
+EndGlobal
