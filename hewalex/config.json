@@ -1,8 +1,8 @@
 {
-	"name": "Hewalex2MQTT-hvdb-cv",
-	"version": "0.3.6",
+	"name": "Hewalex2MQTT-PCCO-Mono",
+	"version": "0.0.1",
 	"slug": "hewalex",
-	"description": "Hewalex heat pump monitoring",
+	"description": "Monitoring pomp ciepła Hewalex PCCO Mono",
 	"url": "https://github.com/hvdb/hewalex2mqtt-homeassistant-add-on-cv/",
 	"arch": [
 		"armv7",
