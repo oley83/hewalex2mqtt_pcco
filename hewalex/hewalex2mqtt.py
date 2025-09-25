@@ -127,31 +127,6 @@ def initConfiguration():
     else:
         _Device_Pcco_MqttTopic = config['Device_Pcco_MqttTopic']
 
-# PCCO2 Device
-    global _Device_Pcco2_Enabled
-    if (os.getenv('Device_Pcco2_Enabled') != None):        
-        _Device_Pcco2_Enabled = os.getenv('Device_Pcco2_Enabled') == "True"
-    else:
-        _Device_Pcco2_Enabled = config['Device_Pcco2_Enabled']
-
-    global _Device_Pcco2_Address
-    if (os.getenv('_Device_Pcco2_Address') != None):        
-        _Device_Pcco2_Address = os.getenv('Device_Pcco2_Address')
-    else:
-        _Device_Pcco2_Address = config['Device_Pcco2_Address']
-
-    global _Device_Pcco2_Port
-    if (os.getenv('Device_Pcco2_Port') != None):        
-        _Device_Pcco2_Port = os.getenv('Device_Pcco2_Port')
-    else:
-        _Device_Pcco2_Port = config['Device_Pcco2_Port']
-
-    global _Device_Pcco2_MqttTopic
-    if (os.getenv('Device_Pcco2_MqttTopic') != None):        
-        _Device_Pcco2_MqttTopic = os.getenv('Device_Pcco2_MqttTopic')
-    else:
-        _Device_Pcco2_MqttTopic = config['Device_Pcco2_MqttTopic']
-
 def start_mqtt():
     global client
     logger.info('Connection in progress to the Mqtt broker (IP:' +_MQTT_ip + ' PORT:'+str(_MQTT_port)+')')
@@ -166,11 +141,6 @@ def start_mqtt():
     if (_Device_Pcco_Enabled):
         logger.info('subscribed to : ' + _Device_Pcco_MqttTopic + '/Command/#')    
         client.subscribe(_Device_Pcco_MqttTopic + '/Command/#', qos=1)
-
-
-    if (_Device_Pcco2_Enabled):
-        logger.info('subscribed to : ' + _Device_Pcco2_MqttTopic + '/Command/#')    
-        client.subscribe(_Device_Pcco2_MqttTopic + '/Command/#', qos=1)
         
     client.loop_start()
 
@@ -194,10 +164,6 @@ def on_message_mqtt(client, userdata, message):
             command = arr[2]
             logger.info('Recieved PCCO command ' + topic)
             writePccoConfig(command, payload)
-        elif len(arr) == 3 and arr[0] == _Device_Pcco2_MqttTopic and arr[1] == 'Command':            
-            command = arr[2]
-            logger.info('Recieved PCCO2 command ' + topic)
-            writePcco2Config(command, payload)
         else:
             logger.info('cannot process message on topic ' + topic)
 
@@ -230,33 +196,6 @@ def on_message_serial(obj, h, sh, m):
     except Exception as e:
         logger.info('Exception in on_message_serial: '+ str(e))
 
-def on_message_serial2(obj, h, sh, m):
-    logger.info('on_message_serial2: obj:'+ str(obj))
-    try:    
-        if flag_connected_mqtt != 1:
-            return False
-        
-        global MessageCache
-        topic = _Device_Zps_MqttTopic
-        if isinstance(obj, PCCO):
-            topic = _Device_Pcco2_MqttTopic
-    
-        if sh["FNC"] == 0x50:
-            mp = obj.parseRegisters(sh["RestMessage"], sh["RegStart"], sh["RegLen"])        
-            for item in mp.items():
-                if isinstance(item[1], dict): # skipping dictionaries (time program) 
-                    continue
-                key = topic + '/' + str(item[0])
-                val = str(item[1])
-                if key not in MessageCache or MessageCache[key] != val:
-                    MessageCache[key] = val
-                    logger.info(key + " " + val)
-                    client.publish(key, val)
-
-    except Exception as e:
-        logger.info('Exception in on_message_serial2: '+ str(e))
-
-
 def device_readregisters_enqueue():
     """Get device status every x seconds"""
     logger.info('Get device status')
@@ -267,11 +206,6 @@ def device_readregisters_enqueue():
     if _Device_Pcco_Enabled:        
         readPCCO()
         readPccoConfig()
-
-    if _Device_Pcco2_Enabled:        
-        readPCCO2()
-        readPcco2Config()
-
 
 def readZPS():
     ser = serial.serial_for_url("socket://%s:%s" % (_Device_Zps_Address, _Device_Zps_Port))
@@ -303,14 +237,7 @@ def readPCCO():
     ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco_Address, _Device_Pcco_Port))
     dev = PCCO(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)        
     dev.readStatusRegisters(ser)    
-    ser.close()  
-
-def readPCCO2():  
-    logger.info('READ PCCO 2')  
-    ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco2_Address, _Device_Pcco2_Port))
-    dev = PCCO(conHardId2, conSoftId2, devHardId, devSoftId, on_message_serial2)        
-    dev.readStatusRegisters(ser)    
-    ser.close()   
+    ser.close()    
 
 def readPccoConfig():    
     ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco_Address, _Device_Pcco_Port))
@@ -318,22 +245,9 @@ def readPccoConfig():
     dev.readConfigRegisters(ser)
     ser.close()
 
-def readPcco2Config():    
-    logger.info('READ PCCO CONF 2')  
-    ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco2_Address, _Device_Pcco2_Port))
-    dev = PCCO(conHardId2, conSoftId2, devHardId, devSoftId, on_message_serial2)            
-    dev.readConfigRegisters(ser)
-    ser.close()
-
 def writePccoConfig(registerName, payload):    
     ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco_Address, _Device_Pcco_Port))
     dev = PCCO(conHardId2, conSoftId2, devHardId, devSoftId, on_message_serial)            
-    dev.write(ser, registerName, payload)
-    ser.close()
-
-def writePcco2Config(registerName, payload):    
-    ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco2_Address, _Device_Pcco2_Port))
-    dev = PCCO(conHardId2, conSoftId2, devHardId, devSoftId, on_message_serial2)            
     dev.write(ser, registerName, payload)
     ser.close()
 
@@ -350,21 +264,6 @@ def printPccoMqttTopics():
             print('| ' +_Device_Pcco_MqttTopic + '/' + str(v['name'])+ ' | ' + v['type'] + ' | ' + str(v.get('desc')))
         if k > dev.REG_CONFIG_START:          
             print('| ' + _Device_Pcco_MqttTopic + '/Command/' + str(v['name']) + ' | ' + v.get('type') + ' | ' + str(v.get('desc')))
-
-def printPcco2MqttTopics():        
-    print('| Topic | Type | Description | ')
-    print('| ----------------------- | ----------- | ---------------------------')
-    dev = PCCO(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)
-    for k, v in dev.registers.items():
-        if isinstance(v['name'] , list):
-            for i in v['name']:
-                if i:
-                    print('| ' + _Device_Pcco2_MqttTopic + '/' + str(i) + ' | ' + v['type'] + ' | ' + str(v.get('desc')))
-        else:
-            print('| ' +_Device_Pcco2_MqttTopic + '/' + str(v['name'])+ ' | ' + v['type'] + ' | ' + str(v.get('desc')))
-        if k > dev.REG_CONFIG_START:          
-            print('| ' + _Device_Pcco2_MqttTopic + '/Command/' + str(v['name']) + ' | ' + v.get('type') + ' | ' + str(v.get('desc')))
-
 
 if __name__ == "__main__":
     initConfiguration()
