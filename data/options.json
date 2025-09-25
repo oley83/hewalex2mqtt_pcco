@@ -9,7 +9,7 @@
   "Device_Zps_Port": 4196,
   "Device_Zps_MqttTopic": "Solary",
   "Device_Pcwu_Enabled": true,
-  "Device_Pcwu_Address": "Hewalex PCCO Mono",
+  "Device_Pcwu_Address": "PCCO Mono",
   "Device_Pcwu_Port": 4196,
   "Device_Pcwu_MqttTopic": "Heatpump",
   "Device_Pcwu2_Enabled": false,
