@@ -79,7 +79,7 @@ def initConfiguration():
         _MQTT_pass = os.getenv('MQTT_pass')
     else:
         _MQTT_pass = config['mqtt_pass']    
-    
+    """
     # ZPS Device
     global _Device_Zps_Enabled
     if (os.getenv('Device_Zps_Enabled') != None):        
@@ -102,6 +102,7 @@ def initConfiguration():
         _Device_Zps_MqttTopic = os.getenv('Device_Zps_MqttTopic')
     else:
         _Device_Zps_MqttTopic = config['Device_Zps_MqttTopic']
+    """
 
     # PCCO Device
     global _Device_Pcco_Enabled
