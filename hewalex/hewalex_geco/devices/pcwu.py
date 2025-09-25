@@ -4,9 +4,9 @@ from .base import BaseDevice
 # https://www.elektroda.pl/rtvforum/topic3499254.html
 
 
-class PCWU(BaseDevice):
+class PCCO(BaseDevice):
 
-    # PCWU is driven by PG-426-P01 (controller) and MG-426-P01 (executive module)
+    # PCCO is driven by PG-426-P01 (controller) and MG-426-P01 (executive module)
     # Below are the registers for the executive module, so no controller settings
     REG_MAX_ADR = 536
     REG_MAX_NUM = 226
