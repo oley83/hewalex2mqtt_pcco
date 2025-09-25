@@ -24,14 +24,14 @@
 		"Device_Zps_Address": "192.168.0.70",
 		"Device_Zps_Port": 4196,
 		"Device_Zps_MqttTopic": "Solary",
-		"Device_Pcwu_Enabled": true,
-		"Device_Pcwu_Address": "192.168.0.70",
-		"Device_Pcwu_Port": 4196,
-		"Device_Pcwu_MqttTopic": "Hewalex PCCO Mono 15",
-		"Device_Pcwu2_Enabled": false,
-		"Device_Pcwu2_Address": "192.168.0.70",
-		"Device_Pcwu2_Port": 4196,
-		"Device_Pcwu2_MqttTopic": "Pompa ciepla 2"
+		"Device_Pcco_Enabled": true,
+		"Device_Pcco_Address": "192.168.0.70",
+		"Device_Pcco_Port": 4196,
+		"Device_Pcco_MqttTopic": "PCCO Mono",
+		"Device_Pcco2_Enabled": false,
+		"Device_Pcco2_Address": "192.168.0.70",
+		"Device_Pcco2_Port": 4196,
+		"Device_Pcco2_MqttTopic": "Pompa ciepla 2"
 	},
 	"schema": {
 		"mqtt_ip": "str",
@@ -43,13 +43,13 @@
 		"Device_Zps_Address": "str?",
 		"Device_Zps_Port": "port?",
 		"Device_Zps_MqttTopic": "str?",
-		"Device_Pcwu_Enabled": "bool",
-		"Device_Pcwu_Address": "str?",
-		"Device_Pcwu_Port": "port?",
-		"Device_Pcwu_MqttTopic": "str?",
-		"Device_Pcwu2_Enabled": "bool",
-		"Device_Pcwu2_Address": "str?",
-		"Device_Pcwu2_Port": "port?",
-		"Device_Pcwu2_MqttTopic": "str?"
+		"Device_Pcco_Enabled": "bool",
+		"Device_Pcco_Address": "str?",
+		"Device_Pcco_Port": "port?",
+		"Device_Pcco_MqttTopic": "str?",
+		"Device_Pcco2_Enabled": "bool",
+		"Device_Pcco2_Address": "str?",
+		"Device_Pcco2_Port": "port?",
+		"Device_Pcco2_MqttTopic": "str?"
 	}
 }
