@@ -9,11 +9,7 @@
   "Device_Zps_Port": 4196,
   "Device_Zps_MqttTopic": "Solary",
   "Device_Pcco_Enabled": true,
-  "Device_Pcco_Address": "PCCO Mono",
+  "Device_Pcco_Address": "192.168.0.70",
   "Device_Pcco_Port": 4196,
-  "Device_Pcco_MqttTopic": "Heatpump",
-  "Device_Pcco2_Enabled": false,
-  "Device_Pcco2_Address": "192.168.0.70",
-  "Device_Pcco2_Port": 4196,
-  "Device_Pcco2_MqttTopic": "Pompa ciepla 2"
+  "Device_Pcco_MqttTopic": "PCCO Mono"
 }
