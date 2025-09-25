@@ -2,7 +2,7 @@ import os
 import threading
 #import configparser
 import serial
-from hewalex_geco.devices import PCCO
+from hewalex_geco.devices import PCCO, ZPS
 import paho.mqtt.client as mqtt
 import logging
 import sys
@@ -19,6 +19,11 @@ conSoftId = 1
 conHardId2 = 1
 conSoftId2 = 1
 
+
+# ZPS (Slave)
+devHardId = 2
+devSoftId = 2
+
 #mqtt
 flag_connected_mqtt = 0
 MessageCache = {}
@@ -33,7 +38,7 @@ stream_handler.setLevel(logging.DEBUG)
 logger.addHandler(stream_handler)
 
 # Start
-logger.info('Starting Hewalex2Mqtt PCCO Mono')
+logger.info('Starting Hewalex 2 Mqtt hvdb')
 
 # Read Configs
 def initConfiguration():
@@ -75,6 +80,29 @@ def initConfiguration():
     else:
         _MQTT_pass = config['mqtt_pass']    
     
+    # ZPS Device
+    global _Device_Zps_Enabled
+    if (os.getenv('Device_Zps_Enabled') != None):        
+        _Device_Zps_Enabled = os.getenv('Device_Zps_Enabled') == "True"
+    else:
+        _Device_Zps_Enabled = config['Device_Zps_Enabled']
+    global _Device_Zps_Address
+    if (os.getenv('_Device_Zps_Address') != None):        
+        _Device_Zps_Address = os.getenv('Device_Zps_Address')
+    else:
+        _Device_Zps_Address = config['Device_Zps_Address']
+    global _Device_Zps_Port
+    if (os.getenv('Device_Zps_Port') != None):        
+        _Device_Zps_Port = os.getenv('Device_Zps_Port')
+    else:
+        _Device_Zps_Port = config['Device_Zps_Port']
+
+    global _Device_Zps_MqttTopic
+    if (os.getenv('Device_Zps_MqttTopic') != None):        
+        _Device_Zps_MqttTopic = os.getenv('Device_Zps_MqttTopic')
+    else:
+        _Device_Zps_MqttTopic = config['Device_Zps_MqttTopic']
+
     # PCCO Device
     global _Device_Pcco_Enabled
     if (os.getenv('Device_Pcco_Enabled') != None):        
@@ -172,9 +200,38 @@ def device_readregisters_enqueue():
     """Get device status every x seconds"""
     logger.info('Get device status')
     threading.Timer(get_status_interval, device_readregisters_enqueue).start()
+    if _Device_Zps_Enabled:        
+        readZPS()
+        #readZPSConfig() dont care fot this ona ATM
     if _Device_Pcco_Enabled:        
         readPCCO()
         readPccoConfig()
+
+def readZPS():
+    ser = serial.serial_for_url("socket://%s:%s" % (_Device_Zps_Address, _Device_Zps_Port))
+    dev = ZPS(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)        
+    dev.readStatusRegisters(ser)
+    ser.close()
+
+def readZPSConfig():
+    ser = serial.serial_for_url("socket://%s:%s" % (_Device_Zps_Address, _Device_Zps_Port))
+    dev = ZPS(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)        
+    dev.readStatusRegisters(ser)
+    ser.close()
+
+def printZPSMqttTopics():
+    print('| Topic | Type | Description | ')
+    print('| ----------------------- | ----------- | ---------------------------')
+    dev = ZPS(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)
+    for k, v in dev.registers.items():
+        if isinstance(v['name'] , list):
+            for i in v['name']:
+                if i:
+                    print('| ' + _Device_Zps_MqttTopic + '/' + str(i)+ ' | ' + v['type'] + ' | ' + str(v.get('desc')))
+        else:
+            print('| ' + _Device_Zps_MqttTopic + '/' + str(v['name'])+ ' | ' + v['type'] + ' | ' + str(v.get('desc')))
+        if k > dev.REG_CONFIG_START:          
+            print('| ' + _Device_Zps_MqttTopic + '/Command/' + str(v['name'])+ ' | ' + v['type'] + ' | ' + str(v.get('desc')))
 
 def readPCCO():    
     ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco_Address, _Device_Pcco_Port))
@@ -212,5 +269,6 @@ if __name__ == "__main__":
     initConfiguration()
     # for generating topic list in readme
     # printPccoMqttTopics()
+    # printZPSMqttTopics()
     start_mqtt()
     device_readregisters_enqueue()
