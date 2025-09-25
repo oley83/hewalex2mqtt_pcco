@@ -207,32 +207,6 @@ def device_readregisters_enqueue():
         readPCCO()
         readPccoConfig()
 
-def readZPS():
-    ser = serial.serial_for_url("socket://%s:%s" % (_Device_Zps_Address, _Device_Zps_Port))
-    dev = ZPS(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)        
-    dev.readStatusRegisters(ser)
-    ser.close()
-
-def readZPSConfig():
-    ser = serial.serial_for_url("socket://%s:%s" % (_Device_Zps_Address, _Device_Zps_Port))
-    dev = ZPS(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)        
-    dev.readStatusRegisters(ser)
-    ser.close()
-
-def printZPSMqttTopics():
-    print('| Topic | Type | Description | ')
-    print('| ----------------------- | ----------- | ---------------------------')
-    dev = ZPS(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)
-    for k, v in dev.registers.items():
-        if isinstance(v['name'] , list):
-            for i in v['name']:
-                if i:
-                    print('| ' + _Device_Zps_MqttTopic + '/' + str(i)+ ' | ' + v['type'] + ' | ' + str(v.get('desc')))
-        else:
-            print('| ' + _Device_Zps_MqttTopic + '/' + str(v['name'])+ ' | ' + v['type'] + ' | ' + str(v.get('desc')))
-        if k > dev.REG_CONFIG_START:          
-            print('| ' + _Device_Zps_MqttTopic + '/Command/' + str(v['name'])+ ' | ' + v['type'] + ' | ' + str(v.get('desc')))
-
 def readPCCO():    
     ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco_Address, _Device_Pcco_Port))
     dev = PCCO(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)        
