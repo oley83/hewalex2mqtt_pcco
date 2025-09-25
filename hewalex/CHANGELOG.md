@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1
+## 0.0.1
 
-- Initial version
-- Based on Hewalex2MQTT
+- Bazuje na Hewalex2MQTT oraz hvdb/hewalex2mqtt-homeassistant-add-on-cv
+- Wersja testowa
