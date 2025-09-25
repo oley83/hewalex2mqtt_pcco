@@ -6,6 +6,7 @@ import paho.mqtt.client as mqtt
 import logging
 import sys
 import json
+import time
 
 # polling interval
 get_status_interval = 30.0
@@ -18,9 +19,10 @@ conSoftId = 1
 conHardId2 = 1
 conSoftId2 = 1
 
-# Device ID (pozostaje dla PCCO)
-devHardId = 2
-devSoftId = 2
+# Device ID - ZMIENIĆ NA POPRAWNY ADRES URZĄDZENIA!
+# Spróbuj 16 zamiast 2, bo błąd wskazuje na adres 16
+devHardId = 16  # ZMIANA: 2 → 16
+devSoftId = 16  # ZMIANA: 2 → 16
 
 #mqtt
 flag_connected_mqtt = 0
@@ -41,11 +43,10 @@ logger.info('Starting Hewalex 2 Mqtt hvdb - PCCO only')
 # Read Configs
 def initConfiguration():
     logger.info("reading config")
-    # When deployed = /hewagate/hewalex2mqtt.py and /data/options.json
     config_file = os.path.join(os.path.dirname(__file__), '../data/options.json')
     config_file = os.path.normpath(config_file)
 
-    if(os.path.isfile(config_file)) :
+    if(os.path.isfile(config_file)):
         file_pointer = open(config_file, 'r')
         config = json.load(file_pointer)
     else:
@@ -83,7 +84,7 @@ def initConfiguration():
     else:
         _MQTT_pass = config['mqtt_pass']    
 
-    # PCCO Device Configuration (only PCCO remains)
+    # PCCO Device Configuration
     global _Device_Pcco_Enabled
     if (os.getenv('Device_Pcco_Enabled') != None):        
         _Device_Pcco_Enabled = os.getenv('Device_Pcco_Enabled') == "True"
@@ -108,6 +109,13 @@ def initConfiguration():
     else:
         _Device_Pcco_MqttTopic = config['Device_Pcco_MqttTopic']
     
+    # Nowa opcja: timeout dla komunikacji szeregowej
+    global _Serial_Timeout
+    if (os.getenv('Serial_Timeout') != None):        
+        _Serial_Timeout = float(os.getenv('Serial_Timeout'))
+    else:
+        _Serial_Timeout = config.get('serial_timeout', 5.0)
+    
     logger.info(f"PCCO Configuration: Enabled={_Device_Pcco_Enabled}, Address={_Device_Pcco_Address}:{_Device_Pcco_Port}, Topic={_Device_Pcco_MqttTopic}")
 
 def start_mqtt():
@@ -120,21 +128,26 @@ def start_mqtt():
     client.on_connect = on_connect_mqtt
     client.on_disconnect = on_disconnect_mqtt
     client.on_message = on_message_mqtt        
-    client.connect(_MQTT_ip, _MQTT_port)  
     
-    if _Device_Pcco_Enabled:
-        logger.info('subscribed to : ' + _Device_Pcco_MqttTopic + '/Command/#')    
-        client.subscribe(_Device_Pcco_MqttTopic + '/Command/#', qos=1)
-        
-    client.loop_start()
+    try:
+        client.connect(_MQTT_ip, _MQTT_port)
+        if _Device_Pcco_Enabled:
+            logger.info('subscribed to : ' + _Device_Pcco_MqttTopic + '/Command/#')    
+            client.subscribe(_Device_Pcco_MqttTopic + '/Command/#', qos=1)
+        client.loop_start()
+    except Exception as e:
+        logger.error(f"MQTT connection failed: {e}")
 
 def on_connect_mqtt(client, userdata, flags, rc):
-    logger.info("Mqtt: Connected to broker with result code " + str(rc))
-    global flag_connected_mqtt
-    flag_connected_mqtt = 1
+    if rc == 0:
+        logger.info("Mqtt: Connected to broker successfully")
+        global flag_connected_mqtt
+        flag_connected_mqtt = 1
+    else:
+        logger.error(f"Mqtt: Connection failed with result code {rc}")
 
 def on_disconnect_mqtt(client, userdata, rc):
-    logger.info("Mqtt: disconnected with result code " + str(rc))
+    logger.info(f"Mqtt: disconnected with result code {rc}")
     global flag_connected_mqtt
     flag_connected_mqtt = 0
 
@@ -143,13 +156,12 @@ def on_message_mqtt(client, userdata, message):
         payload = str(message.payload.decode())
         topic = str(message.topic)
         arr = topic.split('/')
-        # PCCO Command 
         if len(arr) == 3 and arr[0] == _Device_Pcco_MqttTopic and arr[1] == 'Command':            
             command = arr[2]
             logger.info('Received PCCO command ' + topic + ' with payload: ' + payload)
             writePccoConfig(command, payload)
         else:
-            logger.info('Cannot process message on topic ' + topic)
+            logger.warning('Cannot process message on topic ' + topic)
 
     except Exception as e:
         logger.error('Exception in on_message_mqtt: '+ str(e))
@@ -161,13 +173,12 @@ def on_message_serial(obj, h, sh, m):
             return False
         
         global MessageCache
-        # Always use PCCO topic - ZPS is removed
         topic = _Device_Pcco_MqttTopic
     
-        if sh["FNC"] == 0x50:
+        if sh["FNC"] == 0x50:  # Odczyt rejestrów
             mp = obj.parseRegisters(sh["RestMessage"], sh["RegStart"], sh["RegLen"])        
             for item in mp.items():
-                if isinstance(item[1], dict): # skipping dictionaries (time program) 
+                if isinstance(item[1], dict):
                     continue
                 key = topic + '/' + str(item[0])
                 val = str(item[1])
@@ -175,85 +186,83 @@ def on_message_serial(obj, h, sh, m):
                     MessageCache[key] = val
                     logger.info(f"Publishing: {key} = {val}")
                     client.publish(key, val, retain=True)
+        elif sh["FNC"] == 0x40:  # Zapis rejestrów - to jest normalne, nie loguj jako błąd
+            logger.debug(f"Write function code 0x40 acknowledged")
         else:
-            logger.debug(f"Unhandled function code: {sh['FNC']}")
+            logger.debug(f"Unhandled function code: {sh['FNC']} (0x{sh['FNC']:02x})")
 
     except Exception as e:
         logger.error('Exception in on_message_serial: '+ str(e))
 
 def device_readregisters_enqueue():
     """Get device status every x seconds"""
-    logger.debug('Get device status')
+    logger.debug('Polling device status')
     threading.Timer(get_status_interval, device_readregisters_enqueue).start()
     
-    # Only PCCO - ZPS completely removed
     if _Device_Pcco_Enabled:        
         try:
+            # Dodaj opóźnienie między odczytami dla stabilności
             readPCCO()
+            time.sleep(1)  # Opóźnienie między status a config
             readPccoConfig()
         except Exception as e:
-            logger.error(f"Error reading PCCO: {e}")
+            logger.error(f"Error in device polling: {e}")
+
+def safe_serial_operation(operation_name, operation_func):
+    """Bezpieczna operacja na porcie szeregowym z retry"""
+    max_retries = 2
+    for attempt in range(max_retries):
+        try:
+            ser = serial.serial_for_url(f"socket://{_Device_Pcco_Address}:{_Device_Pcco_Port}", timeout=_Serial_Timeout)
+            result = operation_func(ser)
+            ser.close()
+            return result
+        except Exception as e:
+            logger.warning(f"Attempt {attempt + 1} failed for {operation_name}: {e}")
+            if attempt < max_retries - 1:
+                time.sleep(1)  # Czekaj przed retry
+            else:
+                raise e
 
 def readPCCO():    
-    try:
-        ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco_Address, _Device_Pcco_Port))
+    def read_status(ser):
         dev = PCCO(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)        
-        dev.readStatusRegisters(ser)    
-        ser.close()
-        logger.debug("PCCO status registers read successfully")
-    except Exception as e:
-        logger.error(f"Error reading PCCO status: {e}")
-        raise
+        dev.readStatusRegisters(ser)
+        return True
+    
+    safe_serial_operation("PCCO status read", read_status)
+    logger.debug("PCCO status registers read successfully")
 
 def readPccoConfig():    
-    try:
-        ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco_Address, _Device_Pcco_Port))
+    def read_config(ser):
         dev = PCCO(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)            
         dev.readConfigRegisters(ser)
-        ser.close()
-        logger.debug("PCCO config registers read successfully")
-    except Exception as e:
-        logger.error(f"Error reading PCCO config: {e}")
-        raise
+        return True
+    
+    safe_serial_operation("PCCO config read", read_config)
+    logger.debug("PCCO config registers read successfully")
 
 def writePccoConfig(registerName, payload):    
-    try:
-        ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco_Address, _Device_Pcco_Port))
+    def write_config(ser):
         dev = PCCO(conHardId2, conSoftId2, devHardId, devSoftId, on_message_serial)            
         dev.write(ser, registerName, payload)
-        ser.close()
-        logger.info(f"PCCO config written: {registerName} = {payload}")
-    except Exception as e:
-        logger.error(f"Error writing PCCO config: {e}")
-        raise
-
-def printPccoMqttTopics():        
-    print('| Topic | Type | Description | ')
-    print('| ----------------------- | ----------- | ---------------------------')
-    dev = PCCO(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)
-    for k, v in dev.registers.items():
-        if isinstance(v['name'] , list):
-            for i in v['name']:
-                if i:
-                    print('| ' + _Device_Pcco_MqttTopic + '/' + str(i) + ' | ' + v['type'] + ' | ' + str(v.get('desc')))
-        else:
-            print('| ' + _Device_Pcco_MqttTopic + '/' + str(v['name'])+ ' | ' + v['type'] + ' | ' + str(v.get('desc')))
-        if k > dev.REG_CONFIG_START:          
-            print('| ' + _Device_Pcco_MqttTopic + '/Command/' + str(v['name']) + ' | ' + v.get('type') + ' | ' + str(v.get('desc')))
+        return True
+    
+    safe_serial_operation("PCCO config write", write_config)
+    logger.info(f"PCCO config written: {registerName} = {payload}")
 
 if __name__ == "__main__":
     try:
         initConfiguration()
-        # For generating topic list in readme - uncomment if needed
-        # printPccoMqttTopics()
         start_mqtt()
-        # Start the first polling cycle after a short delay
-        threading.Timer(2.0, device_readregisters_enqueue).start()
+        # Daj MQTT czas na połączenie
+        time.sleep(3)
+        device_readregisters_enqueue()
         logger.info("Application started successfully")
         
         # Keep the main thread alive
         while True:
-            threading.Event().wait(1)
+            time.sleep(1)
     except KeyboardInterrupt:
         logger.info("Application stopped by user")
     except Exception as e:
