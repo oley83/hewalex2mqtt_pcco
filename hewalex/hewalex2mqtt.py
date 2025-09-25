@@ -1,8 +1,7 @@
 import os
 import threading
-#import configparser
 import serial
-from hewalex_geco.devices import PCCO, ZPS
+from hewalex_geco.devices import PCCO  # Usunięto ZPS
 import paho.mqtt.client as mqtt
 import logging
 import sys
@@ -18,11 +17,6 @@ conSoftId = 1
 # Controller2 (Master)
 conHardId2 = 1
 conSoftId2 = 1
-
-
-# ZPS (Slave)
-devHardId = 2
-devSoftId = 2
 
 #mqtt
 flag_connected_mqtt = 0
@@ -45,9 +39,9 @@ def initConfiguration():
     logger.info("reading config")
     # When deployed = /hewagate/hewalex2mqtt.py and /data/options.json
     config_file = os.path.join(os.path.dirname(__file__), '../data/options.json')
-    config_file= os.path.normpath(config_file)
+    config_file = os.path.normpath(config_file)
 
-    if(os.path.isfile(config_file)) :
+    if(os.path.isfile(config_file)):
         file_pointer = open(config_file, 'r')
         config = json.load(file_pointer)
     else:
@@ -79,32 +73,8 @@ def initConfiguration():
         _MQTT_pass = os.getenv('MQTT_pass')
     else:
         _MQTT_pass = config['mqtt_pass']    
-    """
-    # ZPS Device
-    global _Device_Zps_Enabled
-    if (os.getenv('Device_Zps_Enabled') != None):        
-        _Device_Zps_Enabled = os.getenv('Device_Zps_Enabled') == "True"
-    else:
-        _Device_Zps_Enabled = config['Device_Zps_Enabled']
-    global _Device_Zps_Address
-    if (os.getenv('_Device_Zps_Address') != None):        
-        _Device_Zps_Address = os.getenv('Device_Zps_Address')
-    else:
-        _Device_Zps_Address = config['Device_Zps_Address']
-    global _Device_Zps_Port
-    if (os.getenv('Device_Zps_Port') != None):        
-        _Device_Zps_Port = os.getenv('Device_Zps_Port')
-    else:
-        _Device_Zps_Port = config['Device_Zps_Port']
 
-    global _Device_Zps_MqttTopic
-    if (os.getenv('Device_Zps_MqttTopic') != None):        
-        _Device_Zps_MqttTopic = os.getenv('Device_Zps_MqttTopic')
-    else:
-        _Device_Zps_MqttTopic = config['Device_Zps_MqttTopic']
-    """
-
-    # PCCO Device
+    # PCCO Device (tylko PCCO zostało)
     global _Device_Pcco_Enabled
     if (os.getenv('Device_Pcco_Enabled') != None):        
         _Device_Pcco_Enabled = os.getenv('Device_Pcco_Enabled') == "True"
@@ -130,7 +100,7 @@ def initConfiguration():
 
 def start_mqtt():
     global client
-    logger.info('Connection in progress to the Mqtt broker (IP:' +_MQTT_ip + ' PORT:'+str(_MQTT_port)+')')
+    logger.info('Connection in progress to the Mqtt broker (IP:' + _MQTT_ip + ' PORT:' + str(_MQTT_port) + ')')
     client = mqtt.Client()
     if _MQTT_authentication:
         logger.info('Mqtt authentication enabled')
@@ -178,9 +148,8 @@ def on_message_serial(obj, h, sh, m):
             return False
         
         global MessageCache
-        topic = _Device_Zps_MqttTopic
-        if isinstance(obj, PCCO):
-            topic = _Device_Pcco_MqttTopic
+        # Uproszczone - zawsze używaj tematu PCCO
+        topic = _Device_Pcco_MqttTopic
     
         if sh["FNC"] == 0x50:
             mp = obj.parseRegisters(sh["RestMessage"], sh["RegStart"], sh["RegLen"])        
@@ -201,9 +170,8 @@ def device_readregisters_enqueue():
     """Get device status every x seconds"""
     logger.info('Get device status')
     threading.Timer(get_status_interval, device_readregisters_enqueue).start()
-    if _Device_Zps_Enabled:        
-        readZPS()
-        #readZPSConfig() dont care fot this ona ATM
+    
+    # Tylko PCCO - usunięto część ZPS
     if _Device_Pcco_Enabled:        
         readPCCO()
         readPccoConfig()
@@ -236,7 +204,7 @@ def printPccoMqttTopics():
                 if i:
                     print('| ' + _Device_Pcco_MqttTopic + '/' + str(i) + ' | ' + v['type'] + ' | ' + str(v.get('desc')))
         else:
-            print('| ' +_Device_Pcco_MqttTopic + '/' + str(v['name'])+ ' | ' + v['type'] + ' | ' + str(v.get('desc')))
+            print('| ' + _Device_Pcco_MqttTopic + '/' + str(v['name'])+ ' | ' + v['type'] + ' | ' + str(v.get('desc')))
         if k > dev.REG_CONFIG_START:          
             print('| ' + _Device_Pcco_MqttTopic + '/Command/' + str(v['name']) + ' | ' + v.get('type') + ' | ' + str(v.get('desc')))
 
@@ -244,6 +212,5 @@ if __name__ == "__main__":
     initConfiguration()
     # for generating topic list in readme
     # printPccoMqttTopics()
-    # printZPSMqttTopics()
     start_mqtt()
     device_readregisters_enqueue()
