@@ -149,7 +149,9 @@ def on_message_serial(obj, h, sh, m):
             return False
         
         global MessageCache
-        topic = _Device_Pcco_MqttTopic
+        topic = _Device_Zps_MqttTopic
+        if isinstance(obj, PCCO):
+            topic = _Device_Pcco_MqttTopic
     
         if sh["FNC"] == 0x50:
             mp = obj.parseRegisters(sh["RestMessage"], sh["RegStart"], sh["RegLen"])        
