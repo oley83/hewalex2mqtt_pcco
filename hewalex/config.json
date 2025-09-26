@@ -1,6 +1,6 @@
 {
 	"name": "Hewalex2MQTT-PCCO-Mono",
-	"version": "0.0.48",
+	"version": "0.0.49",
 	"slug": "hewalex",
 	"description": "Monitoring pomp ciepła Hewalex PCCO Mono",
 	"url": "https://github.com/oley83/hewalex2mqtt_pcco/",
