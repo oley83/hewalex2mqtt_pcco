@@ -129,17 +129,17 @@ def initConfiguration():
     if (os.getenv('Serial_Timeout') != None):        
         _SERIAL_TIMEOUT = float(os.getenv('Serial_Timeout'))
     else:
-        _SERIAL_TIMEOUT = config.get('serial_timeout', 10.0)
+        _SERIAL_TIMEOUT = config.get('Serial_timeout', 10.0)
     
     if (os.getenv('Max_Retries') != None):        
         _MAX_RETRIES = int(os.getenv('Max_Retries'))
     else:
-        _MAX_RETRIES = config.get('max_retries', 2)
+        _MAX_RETRIES = config.get('Max_retries', 2)
     
     if (os.getenv('Polling_Interval') != None):        
         get_status_interval = float(os.getenv('Polling_Interval'))
     else:
-        get_status_interval = config.get('polling_interval', 60.0)
+        get_status_interval = config.get('Polling_interval', 60.0)
     
     logger.info(f"PCCO Configuration: Enabled={_Device_Pcco_Enabled}, Address={_Device_Pcco_Address}:{_Device_Pcco_Port}, Topic={_Device_Pcco_MqttTopic}")
     logger.info(f"Read-only mode: {_Read_Only_Mode}")
