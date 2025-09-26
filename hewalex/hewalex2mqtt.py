@@ -10,15 +10,15 @@ import json
 # polling interval
 get_status_interval = 60.0
 
-# Controller (Master) - identyfikator tego skryptu w komunikacji
+# Controller_odczyt (Master) - identyfikator ID tego skryptu w komunikacji do odczytu danych
 conHardId = 1
 conSoftId = 1
 
-# Controller2 (Master) - alternatywny ID do zapisu komend
+# Controller_zapis (Master) - alternatywny ID tego skryptu do zapisu danych w sterowniku pompy
 conHardId2 = 1
 conSoftId2 = 1
 
-# Device ID (Slave - PCCO)- identyfikator pompy ciepła
+# Device ID (Slave - PCCO) - identyfikator ID pompy ciepła
 devHardId = 2
 devSoftId = 2
 
