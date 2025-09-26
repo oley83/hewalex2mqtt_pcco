@@ -6,6 +6,7 @@
   "mqtt_pass": "mqtt_narcyzowa",
   "Read_only_mode": true,
   "Read_config_enabled": false,
+  "Print_mqtt_topics": false,
   "Serial_timeout": 10,
   "Max_retries": 2,
   "Polling_interval": 60
