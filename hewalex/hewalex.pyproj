@@ -29,8 +29,7 @@
     <Compile Include="hewalex2mqtt.py" />
     <Compile Include="hewalex_geco\crc.py" />
     <Compile Include="hewalex_geco\devices\base.py" />
-    <Compile Include="hewalex_geco\devices\pcwu.py" />
-    <Compile Include="hewalex_geco\devices\zps.py" />
+    <Compile Include="hewalex_geco\devices\pcco.py" />
     <Compile Include="hewalex_geco\devices\__init__.py" />
     <Compile Include="hewalex_geco\__init__.py" />
   </ItemGroup>
