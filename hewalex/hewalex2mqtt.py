@@ -19,7 +19,7 @@ conHardId2 = 1
 conSoftId2 = 1
 
 # Device ID (pozostaje dla PCCO)
-devHardId = 4
+devHardId = 2
 devSoftId = 2
 
 #mqtt
