@@ -5,6 +5,9 @@
   "mqtt_user": "mqtt",
   "mqtt_pass": "mqtt_narcyzowa",
   "Read_only_mode": true,
+  "Serial_timeout": 10,
+  "Max_retries": 2,
+  "Polling_interval": 60
   "Device_Pcco_Enabled": true,
   "Device_Pcco_Address": "192.168.0.70",
   "Device_Pcco_Port": 4196,
