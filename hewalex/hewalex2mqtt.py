@@ -20,7 +20,7 @@ conHardId2 = 1
 conSoftId2 = 1
 
 # Device ID (Slave - PCCO) - identyfikator ID pompy ciepła
-devHardId = 2
+devHardId = 4
 devSoftId = 2
 
 #mqtt
@@ -262,7 +262,8 @@ def printPccoMqttTopics():       #Wyświetla listę tematów MQTT - dostepne rej
 if __name__ == "__main__":
     try:
         initConfiguration()
-        #printPccoMqttTopics()         # Jesli odkomentowane to wyswietla dostepne rejestry        start_mqtt()
+        #printPccoMqttTopics()         # Jesli odkomentowane to wyswietla dostepne rejestry
+        start_mqtt()
         # Start the first polling cycle after a short delay
         threading.Timer(2.0, device_readregisters_enqueue).start()
         logger.info("Application started successfully")
