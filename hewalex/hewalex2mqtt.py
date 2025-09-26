@@ -9,7 +9,7 @@ import json
 import random
 
 # polling interval
-get_status_interval = 60.0
+get_status_interval = 30.0
 
 # Controller_odczyt (Master) - identyfikator ID tego skryptu w komunikacji do odczytu danych
 conHardId = 1
@@ -20,7 +20,7 @@ conHardId2 = 1
 conSoftId2 = 1
 
 # Device ID (Slave - PCCO) - identyfikator ID pompy ciepła
-devHardId = 4
+devHardId = 2
 devSoftId = 2
 
 #mqtt
@@ -117,7 +117,7 @@ def initConfiguration():
     if (os.getenv('Read_Only_Mode') != None):        
         _Read_Only_Mode = os.getenv('Read_Only_Mode') == "True"
     else:
-        _Read_Only_Mode = config.get('read_only_mode', True)  # Domyślnie True
+        _Read_Only_Mode = config.get('Read_only_mode', True)  # Domyślnie True
     
     logger.info(f"PCCO Configuration: Enabled={_Device_Pcco_Enabled}, Address={_Device_Pcco_Address}:{_Device_Pcco_Port}, Topic={_Device_Pcco_MqttTopic}")
     logger.info(f"Read-only mode: {_Read_Only_Mode}")  # Logowanie stanu trybu read-only
@@ -187,6 +187,7 @@ def on_message_serial(obj, h, sh, m):
                 val = str(item[1])
                
                 if key not in MessageCache or MessageCache[key] != val:    #Sprawdza czy wartość się zmieniła (unika duplikatów)
+                
                     MessageCache[key] = val
                     logger.info(f"Publishing: {key} = {val}")
                     client.publish(key, val, retain=True)
@@ -203,7 +204,7 @@ def device_readregisters_enqueue():   #Pobiera dane z pompy co x sekund
     if _Device_Pcco_Enabled:        
         try:
             readPCCO()			#Odczytuje rejestry statusowe
-            #readPccoConfig()	#Odczytuje rejestry konfiguracyjne
+            readPccoConfig()	#Odczytuje rejestry konfiguracyjne
         except Exception as e:
             logger.error(f"Error reading PCCO: {e}")
 
@@ -261,8 +262,7 @@ def printPccoMqttTopics():       #Wyświetla listę tematów MQTT - dostepne rej
 if __name__ == "__main__":
     try:
         initConfiguration()
-        printPccoMqttTopics()         # Jesli odkomentowane to wyswietla dostepne rejestry
-        start_mqtt()
+        #printPccoMqttTopics()         # Jesli odkomentowane to wyswietla dostepne rejestry        start_mqtt()
         # Start the first polling cycle after a short delay
         threading.Timer(2.0, device_readregisters_enqueue).start()
         logger.info("Application started successfully")
