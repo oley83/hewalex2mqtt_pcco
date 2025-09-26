@@ -155,7 +155,7 @@ def initConfiguration():
     if (os.getenv('Print_Mqtt_Topics') != None):        
         _Print_Mqtt_Topics = os.getenv('Print_Mqtt_Topics') == "True"
     else:
-        _Print_Mqtt_Topics = config.get('print_mqtt_topics', False)  # Domyślnie wyłączone
+        _Print_Mqtt_Topics = config.get('Print_mqtt_topics', False)  # Domyślnie wyłączone
     
     logger.info(f"PCCO Configuration: Enabled={_Device_Pcco_Enabled}, Address={_Device_Pcco_Address}:{_Device_Pcco_Port}, Topic={_Device_Pcco_MqttTopic}")
     logger.info(f"Read-only mode: {_Read_Only_Mode}")
