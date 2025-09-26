@@ -4,7 +4,7 @@
   "mqtt_authentication": true,
   "mqtt_user": "mqtt",
   "mqtt_pass": "mqtt_narcyzowa",
-  "read_only_mode": true,
+  "Read_only_mode": true,
   "Device_Pcco_Enabled": true,
   "Device_Pcco_Address": "192.168.0.70",
   "Device_Pcco_Port": 4196,
