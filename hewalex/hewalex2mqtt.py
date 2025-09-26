@@ -45,7 +45,9 @@ stream_handler.setLevel(logging.DEBUG)
 logger.addHandler(stream_handler)
 
 # Start
-logger.info('Starting Hewalex2Mqtt - PCCO Mono (OPTIMIZED)')
+logger.info('')
+logger.info('---------------------------------')
+logger.info('Starting Hewalex2Mqtt - PCCO Mono')
 
 # Read Configs
 def initConfiguration():
