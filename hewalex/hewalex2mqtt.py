@@ -6,6 +6,7 @@ import paho.mqtt.client as mqtt
 import logging
 import sys
 import json
+import random
 
 # polling interval
 get_status_interval = 60.0
@@ -25,6 +26,9 @@ devSoftId = 2
 #mqtt
 flag_connected_mqtt = 0
 MessageCache = {}
+
+# Read-only mode
+_Read_Only_Mode = True  # Domyślnie włączony tryb read-only dla bezpieczeństwa (blokada funkcji zapisu)
 
 # logging
 logger = logging.getLogger(__name__)
@@ -107,8 +111,16 @@ def initConfiguration():
         _Device_Pcco_MqttTopic = os.getenv('Device_Pcco_MqttTopic')
     else:
         _Device_Pcco_MqttTopic = config['Device_Pcco_MqttTopic']
+
+    # Read-only mode configuration
+    global _Read_Only_Mode
+    if (os.getenv('Read_Only_Mode') != None):        
+        _Read_Only_Mode = os.getenv('Read_Only_Mode') == "True"
+    else:
+        _Read_Only_Mode = config.get('read_only_mode', True)  # Domyślnie True
     
     logger.info(f"PCCO Configuration: Enabled={_Device_Pcco_Enabled}, Address={_Device_Pcco_Address}:{_Device_Pcco_Port}, Topic={_Device_Pcco_MqttTopic}")
+    logger.info(f"Read-only mode: {_Read_Only_Mode}")  # Logowanie stanu trybu read-only
 
 def start_mqtt():
     global client
@@ -123,8 +135,11 @@ def start_mqtt():
     client.connect(_MQTT_ip, _MQTT_port)  
     
     if _Device_Pcco_Enabled:
-        logger.info('subscribed to : ' + _Device_Pcco_MqttTopic + '/Command/#')    
-        client.subscribe(_Device_Pcco_MqttTopic + '/Command/#', qos=1)
+        if not _Read_Only_Mode:  # TYLKO jeśli nie jest w trybie read-only
+            logger.info('subscribed to : ' + _Device_Pcco_MqttTopic + '/Command/#')    
+            client.subscribe(_Device_Pcco_MqttTopic + '/Command/#', qos=1)
+        else:
+            logger.info('Read-only mode: MQTT commands disabled')
         
     client.loop_start()
 
@@ -181,9 +196,10 @@ def on_message_serial(obj, h, sh, m):
     except Exception as e:
         logger.error('Exception in on_message_serial: '+ str(e))
 
-def device_readregisters_enqueue():   #pobiera dane z pompy co x sekund
+def device_readregisters_enqueue():   #Pobiera dane z pompy co x sekund
     logger.debug('Get device status')
-    threading.Timer(get_status_interval, device_readregisters_enqueue).start()
+    random_delay = random.uniform(0, 5)    #losowe opoznienie aby unknac kolizji z ekontol
+    threading.Timer(get_status_interval + random_delay, device_readregisters_enqueue).start()
     if _Device_Pcco_Enabled:        
         try:
             readPCCO()			#Odczytuje rejestry statusowe
@@ -213,7 +229,11 @@ def readPccoConfig():    #Odczyt konfiguracji z pompy
         logger.error(f"Error reading PCCO config: {e}")
         raise
 
-def writePccoConfig(registerName, payload):  	#Zapis do pompy  
+def writePccoConfig(registerName, payload):    #zapis do pompy
+    if _Read_Only_Mode:  #Sprawdzanie trybu READ-ONLY
+        logger.warning(f"Read-only mode enabled. Ignoring write command: {registerName} = {payload}")
+        return
+        
     try:
         ser = serial.serial_for_url("socket://%s:%s" % (_Device_Pcco_Address, _Device_Pcco_Port))
         dev = PCCO(conHardId2, conSoftId2, devHardId, devSoftId, on_message_serial)            
@@ -224,7 +244,7 @@ def writePccoConfig(registerName, payload):  	#Zapis do pompy
         logger.error(f"Error writing PCCO config: {e}")
         raise
 
-def printPccoMqttTopics():       #Wyświetla listę tematów MQTT 
+def printPccoMqttTopics():       #Wyświetla listę tematów MQTT - dostepne rejestry
     print('| Topic | Type | Description | ')
     print('| ----------------------- | ----------- | ---------------------------')
     dev = PCCO(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)
@@ -241,8 +261,7 @@ def printPccoMqttTopics():       #Wyświetla listę tematów MQTT
 if __name__ == "__main__":
     try:
         initConfiguration()
-        # For generating topic list in readme - uncomment if needed
-        printPccoMqttTopics()
+        printPccoMqttTopics()         # Jesli odkomentowane to wyswietla dostepne rejestry
         start_mqtt()
         # Start the first polling cycle after a short delay
         threading.Timer(2.0, device_readregisters_enqueue).start()
