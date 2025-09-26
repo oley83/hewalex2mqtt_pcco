@@ -44,7 +44,7 @@ logger.info('Starting Hewalex2Mqtt - PCCO Mono')
 
 # Read Configs
 def initConfiguration():
-    logger.info("reading config")
+    logger.info("Reading config")
     # When deployed = /hewagate/hewalex2mqtt.py and /data/options.json
     config_file = os.path.join(os.path.dirname(__file__), '../data/options.json')
     config_file = os.path.normpath(config_file)
