@@ -9,7 +9,7 @@ import json
 import random
 import time
 
-# polling interval - ZWIĘKSZONY dla stabilności
+# polling interval
 get_status_interval = 60.0
 
 # Controller_odczyt (Master) - identyfikator ID tego skryptu w komunikacji do odczytu danych
@@ -34,7 +34,7 @@ _Read_Only_Mode = True  # Domyślnie włączony tryb read-only dla bezpieczeńst
 # Nowe zmienne dla lepszej kontroli komunikacji
 _SERIAL_TIMEOUT = 10.0  # Timeout dla połączenia szeregowego
 _MAX_RETRIES = 2        # Maksymalna liczba ponownych prób
-_Read_Config_Enabled = True  # Czy odczytywać konfigurację pompy
+_Read_Config_Enabled = False  # Czy odczytywać konfigurację pompy
 
 # logging
 logger = logging.getLogger(__name__)
@@ -148,7 +148,7 @@ def initConfiguration():
     if (os.getenv('Read_Config_Enabled') != None):        
         _Read_Config_Enabled = os.getenv('Read_Config_Enabled') == "True"
     else:
-        _Read_Config_Enabled = config.get('read_config_enabled', True)  # Domyślnie włączone
+        _Read_Config_Enabled = config.get('Read_config_enabled', False)  #Domyślnie wyłączone
     
     logger.info(f"PCCO Configuration: Enabled={_Device_Pcco_Enabled}, Address={_Device_Pcco_Address}:{_Device_Pcco_Port}, Topic={_Device_Pcco_MqttTopic}")
     logger.info(f"Read-only mode: {_Read_Only_Mode}")
