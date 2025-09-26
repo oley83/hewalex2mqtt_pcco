@@ -1,4 +1,3 @@
-
 import os
 import threading
 import serial
@@ -20,7 +19,7 @@ conHardId2 = 1
 conSoftId2 = 1
 
 # Device ID (pozostaje dla PCCO)
-devHardId = 2
+devHardId = 4
 devSoftId = 2
 
 #mqtt
