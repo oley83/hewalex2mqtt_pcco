@@ -45,9 +45,8 @@ stream_handler.setLevel(logging.DEBUG)
 logger.addHandler(stream_handler)
 
 # Start
-logger.info('')
-logger.info('---------------------------------')
-logger.info('Starting Hewalex2Mqtt - PCCO Mono')
+logger.info("---------------------------------")
+logger.info("Starting Hewalex2Mqtt - PCCO Mono")
 
 # Read Configs
 def initConfiguration():
@@ -325,7 +324,7 @@ if __name__ == "__main__":
         time.sleep(3)
         # Start the first polling cycle after a short delay
         threading.Timer(2.0, device_readregisters_enqueue).start()
-        logger.info("Application started successfully with optimizations")
+        logger.info("Application started successfully")
         
         # Keep the main thread alive
         while True:
