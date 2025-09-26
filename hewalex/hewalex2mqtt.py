@@ -34,7 +34,7 @@ _Read_Only_Mode = True  # Domyślnie włączony tryb read-only dla bezpieczeńst
 # Nowe zmienne dla lepszej kontroli komunikacji
 _SERIAL_TIMEOUT = 10.0  # Timeout dla połączenia szeregowego
 _MAX_RETRIES = 2        # Maksymalna liczba ponownych prób
-_Read_Config_Enabled = True  # Czy odczytywać konfigurację pompy
+_Read_Config_Enabled = False  # Czy odczytywać konfigurację pompy
 _Print_Mqtt_Topics = False   # Czy wyświetlać listę tematów MQTT przy starcie
 
 # logging
@@ -149,7 +149,7 @@ def initConfiguration():
     if (os.getenv('Read_Config_Enabled') != None):        
         _Read_Config_Enabled = os.getenv('Read_Config_Enabled') == "True"
     else:
-        _Read_Config_Enabled = config.get('read_config_enabled', True)  # Domyślnie włączone
+        _Read_Config_Enabled = config.get('Read_config_enabled', False)  # Domyślnie wyłączone
     
     # Print MQTT topics option - NOWA OPCJA
     if (os.getenv('Print_Mqtt_Topics') != None):        
