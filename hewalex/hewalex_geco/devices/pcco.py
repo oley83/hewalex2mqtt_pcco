@@ -46,50 +46,54 @@ class PCCO(BaseDevice):
         154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2' },
         156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna' },
         
-        194: { 'type': 'bool', 'name': 'IsManual' },
+     #   194: { 'type': 'bool', 'name': 'IsManual' },
         196: { 'type': 'mask', 'name': [
-            'FanON',                                                    # Fan ON (True/False)
-            None,
-            'CirculationPumpON',                                        # Circulation pump ON (True/False)
-            None,
-            None,
-            'HeatPumpON',                                               # Heat pump ON (True/False)
-            None,
-            None,
-            None,
-            None,
-            None,
-            'CompressorON',                                             # Compressor ON (True/False)
-            'HeaterEON',                                                # Heater E ON (True/False)
-        ]},
-        198: { 'type': 'word', 'name': 'EV1', 'desc': 'Expansion valve' },
-        202: { 'type': 'word', 'name': 'WaitingStatus', 'desc': ' 0 when available for operation, 2 when disabled through register 304' },               #
-     
+            'Grzanie CO',                                             
+            'Grzanie CWU',
+            'Niska temp. dla CO',                                   
+            'Niska temp. dla CWU',
+            'Pompa ciepła wyłączona',
+            '[C01] Ochrona skraplacza przed zamarznięciem w trybie chłodzenia - poziom 1',                     
+            '[C01] Ochrona skraplacza przed zamarznięciem w trybie chłodzenia - poziom 2',
+            '[C02] Blokada chłodzenia',
+            'Za wysoka temperatura na wyjściu',
+            'Za niska temperatura na wyjściu',
+            'Brak przepływu,
+            'Ochrona PC - zbyt niska temperatura wody',                                 
+            'Wysoka taryfa',                                            
+          ]},
+     #   198: { 'type': 'word', 'name': 'EV1', 'desc': 'Expansion valve' },
+    #  202: { 'type': 'word', 'name': 'WaitingStatus', 'desc': ' 0 when available for operation, 2 when disabled through register 304' },               #
+       
+        316: { 'type': 'te10', 'name': 'T12', 'desc': 'T12 - temp. pokojowa obiegu CO1' },
+        154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2' },
+        156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna' },
+        
         # Config registers
    
-        302: { 'type': 'word', 'name': 'InstallationScheme', 'options': [1,2,3,4,5,6,7,8,9], 'desc': 'Installation Scheme (1-9)' },
-        304: { 'type': 'bool', 'name': 'HeatPumpEnabled', 'options': [0,1], 'desc': 'Heat Pump Enabled (True/False)'},
-        306: { 'type': 'word', 'name': 'TapWaterSensor', 'options': [0,1,2], 'desc': 'Temp. sensor controlling heat pump operation [T2,T3,T7, factory setting T2]' },                                  #
-        308: { 'type': 'te10', 'name': 'TapWaterTemp', 'options':  [100,110,112,130,140,150,160,170,180,190,    #
-                                                                    200,210,220,230,240,250,260,270,280,290,
-                                                                    300,310,320,330,340,350,360,370,380,390,
-                                                                    400,410,420,430,440,450,460,470,480,490,
-                                                                    500,510,520,530,540,550,560,570,580,590,
-                                                                    600] , 'desc': 'HUW temperature for heat pump [10-60°C, factory setting 50°C]'},                                 
-        310: { 'type': 'te10', 'name': 'TapWaterHysteresis', 'options': [20,30,40,50,60,70,80,90,100] , 'desc': 'Heat pump start-up hysteresis [2-10°C, factory setting 5°C]'},        # 
-        312: { 'type': 'te10', 'name': 'AmbientMinTemp', 'options': [-100,-90,-80,-70,-60,-50,-40,-30,-20,-10,  # 
-                                                                     10,20,30,40,50,60,70,80,90,100] , 'desc': 'Minimum ambient temperature (T1) [-10-10°C] ' },                                                
-        314: { 'type': 'tprg', 'name': 'TimeProgramHPM-F', 'desc': 'Time Program HP M-F (True/False per hour of the day)' },                                                    # 
-        318: { 'type': 'tprg', 'name': 'TimeProgramHPSat', 'desc': 'Time Program HP Sat (True/False per hour of the day)' },                                                    # 
-        322: { 'type': 'tprg', 'name': 'TimeProgramHPSun', 'desc': 'Time Program HP Sun (True/False per hour of the day)' },                                                    # 
-
-        326: { 'type': 'bool', 'name': 'AntiFreezingEnabled', 'options': [0,1], 'desc': 'Function protecting against freezing [YES/NO], factory setting YES' },                               # 
-        328: { 'type': 'word', 'name': 'WaterPumpOperationMode', 'options': [0,1], 'desc': 'Water Pump Operation Mode (0=Continuous, 1=Synchronous)' },                            # 
-        330: { 'type': 'word', 'name': 'FanOperationMode', 'options': [0,1,2], 'desc': 'Fan Operation Mode (0=Max, 1=Min, 2=Day/Night), factory MAX' },                                # 
-        332: { 'type': 'word', 'name': 'DefrostingInterval', 'desc': 'Defrosting cycle start-up delay [30-90 min., factory setting 45 min.]' },                                                  # 
-        334: { 'type': 'te10', 'name': 'DefrostingStartTemp', 'desc': 'Temperature activating defrosting [-30 - 0°C, factory setting -7°C]' },                                                 # 
-        336: { 'type': 'te10', 'name': 'DefrostingStopTemp', 'desc': 'Temperature finishing defrosting [2-30°C, factory setting 13°C]' }, 
-        338: { 'type': 'word', 'name': 'DefrostingMaxTime', 'desc': 'Maximum defrosting duration [1-12 min., factory setting 8 min.]' },
+      #  302: { 'type': 'word', 'name': 'InstallationScheme', 'options': [1,2,3,4,5,6,7,8,9], 'desc': 'Installation Scheme (1-9)' },
+      #  304: { 'type': 'bool', 'name': 'HeatPumpEnabled', 'options': [0,1], 'desc': 'Heat Pump Enabled (True/False)'},
+      #  306: { 'type': 'word', 'name': 'TapWaterSensor', 'options': [0,1,2], 'desc': 'Temp. sensor controlling heat pump operation [T2,T3,T7, factory setting T2]' },                                  #
+      #  308: { 'type': 'te10', 'name': 'TapWaterTemp', 'options':  [100,110,112,130,140,150,160,170,180,190,    #
+    #                                                                200,210,220,230,240,250,260,270,280,290,
+     #                                                               300,310,320,330,340,350,360,370,380,390,
+     #                                                               400,410,420,430,440,450,460,470,480,490,
+    #                                                                500,510,520,530,540,550,560,570,580,590,
+    #                                                                600] , 'desc': 'HUW temperature for heat pump [10-60°C, factory setting 50°C]'},                                 
+    #    310: { 'type': 'te10', 'name': 'TapWaterHysteresis', 'options': [20,30,40,50,60,70,80,90,100] , 'desc': 'Heat pump start-up hysteresis [2-10°C, factory setting 5°C]'},        # 
+     #   312: { 'type': 'te10', 'name': 'AmbientMinTemp', 'options': [-100,-90,-80,-70,-60,-50,-40,-30,-20,-10,  # 
+    #                                                                 10,20,30,40,50,60,70,80,90,100] , 'desc': 'Minimum ambient temperature (T1) [-10-10°C] ' },                                                
+    #    314: { 'type': 'tprg', 'name': 'TimeProgramHPM-F', 'desc': 'Time Program HP M-F (True/False per hour of the day)' },                                                    # 
+    #    318: { 'type': 'tprg', 'name': 'TimeProgramHPSat', 'desc': 'Time Program HP Sat (True/False per hour of the day)' },                                                    # 
+    #    322: { 'type': 'tprg', 'name': 'TimeProgramHPSun', 'desc': 'Time Program HP Sun (True/False per hour of the day)' },                                                    # 
+#
+  #      326: { 'type': 'bool', 'name': 'AntiFreezingEnabled', 'options': [0,1], 'desc': 'Function protecting against freezing [YES/NO], factory setting YES' },                               # 
+    #    328: { 'type': 'word', 'name': 'WaterPumpOperationMode', 'options': [0,1], 'desc': 'Water Pump Operation Mode (0=Continuous, 1=Synchronous)' },                            # 
+    #    330: { 'type': 'word', 'name': 'FanOperationMode', 'options': [0,1,2], 'desc': 'Fan Operation Mode (0=Max, 1=Min, 2=Day/Night), factory MAX' },                                # 
+   #     332: { 'type': 'word', 'name': 'DefrostingInterval', 'desc': 'Defrosting cycle start-up delay [30-90 min., factory setting 45 min.]' },                                                  # 
+    #    334: { 'type': 'te10', 'name': 'DefrostingStartTemp', 'desc': 'Temperature activating defrosting [-30 - 0°C, factory setting -7°C]' },                                                 # 
+    #    336: { 'type': 'te10', 'name': 'DefrostingStopTemp', 'desc': 'Temperature finishing defrosting [2-30°C, factory setting 13°C]' }, 
+   #     338: { 'type': 'word', 'name': 'DefrostingMaxTime', 'desc': 'Maximum defrosting duration [1-12 min., factory setting 8 min.]' },
 
         #374                                                            # Time Program? Heat pump
         #406                                                            # Time Program? Heater E
@@ -102,7 +106,7 @@ class PCCO(BaseDevice):
         #???                                                            # Protection carried out by heater P [YES/NO, factory setting YES]
         #???                                                            # Protection carried out by gas-fired boiler [YES/NO, factory setting YES, shown in diagrams no. 4,7,9]
 
-        516: { 'type': 'bool', 'name': 'ExtControllerHPOFF', 'desc': 'Heat pump deactivation [YES/NO, factory setting YES]' },          
+     #   516: { 'type': 'bool', 'name': 'ExtControllerHPOFF', 'desc': 'Heat pump deactivation [YES/NO, factory setting YES]' },          
         #518                                                            # ?? Electric heater E deactivation [YES/NO, factory setting YES]
         #520                                                            # ?? Electric heater P deactivation [YES/NO, factory setting YES]
         #522                                                            # ?? Gas-fired boiler shutdown [YES/NO, factory setting YES, shown in diagrams no. 4,7,9]
