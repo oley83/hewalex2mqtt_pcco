@@ -269,7 +269,7 @@ def device_readregisters_enqueue():   #Pobiera dane z pompy co x sekund
         # Odczyt konfiguracji tylko jeśli jest włączony w konfiguracji
         if _Read_Config_Enabled:
             # Dłuższe opóźnienie między odczytem statusu a konfiguracji
-            time.sleep(3)
+            time.sleep(15)
             
             # Próbuj odczytać konfigurację, ale jeśli się nie uda, nie przerywaj całkowicie
             try:
@@ -323,8 +323,8 @@ def writePccoConfig(registerName, payload):    #zapis do pompy
         raise
 
 def printPccoMqttTopics():       #Wyświetla listę tematów MQTT - dostepne rejestry
-    print('| Topic | Type | Description | ')
-    print('| ----------------------- | ----------- | ---------------------------')
+    print('|         Temat           |    Type     |                  Opis                | ')
+    print('| ----------------------- | ----------- | -------------------------------------|')
     dev = PCCO(conHardId, conSoftId, devHardId, devSoftId, on_message_serial)
     for k, v in dev.registers.items():
         if isinstance(v['name'] , list):
