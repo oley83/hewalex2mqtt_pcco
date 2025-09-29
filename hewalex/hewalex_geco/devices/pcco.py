@@ -6,8 +6,8 @@ from .base import BaseDevice
 
 class PCCO(BaseDevice):
 
-    # PCCO is driven by PG-426-P04 (controller) and MG-426-P04 (executive module)
-    # Below are the registers for the executive module, so no controller settings
+    # PCCO sterowany jest za pomocą kontrolera PG-426-P04 i modułu wykonawczego MG-426-P04
+    # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
     REG_MAX_ADR = 536
     REG_MAX_NUM = 226
     REG_CONFIG_START = 400
