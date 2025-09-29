@@ -58,7 +58,7 @@ class PCCO(BaseDevice):
             '[C02] Blokada chłodzenia',
             'Za wysoka temperatura na wyjściu',
             'Za niska temperatura na wyjściu',
-            'Brak przepływu,
+            'Brak przepływu',
             'Ochrona PC - zbyt niska temperatura wody',                                 
             'Wysoka taryfa',                                            
           ]},
