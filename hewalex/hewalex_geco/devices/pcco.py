@@ -30,7 +30,21 @@ class PCCO(BaseDevice):
         152: { 'type': 'te10', 'name': 'T12', 'desc': 'T12 - temp. pokojowa obiegu CO1 [°C]' },
         154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2 [°C]' },
         156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna [°C]' },
-
+        196: { 'type': 'mask', 'name': [
+            'Grzanie CO',                                             
+            'Grzanie CWU',
+            'Niska temp. dla CO',                                   
+            'Niska temp. dla CWU',
+            'Pompa ciepła wyłączona',
+            '[C01] Ochrona skraplacza przed zamarznięciem w trybie chłodzenia - poziom 1',                     
+            '[C01] Ochrona skraplacza przed zamarznięciem w trybie chłodzenia - poziom 2',
+            '[C02] Blokada chłodzenia',
+            'Za wysoka temperatura na wyjściu',
+            'Za niska temperatura na wyjściu',
+            'Brak przepływu',
+            'Ochrona PC - zbyt niska temperatura wody',                                 
+            'Wysoka taryfa',                                            
+          ]},
         
         # Rejestry konfiguracji
 
