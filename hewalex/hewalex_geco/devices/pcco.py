@@ -10,7 +10,7 @@ class PCCO(BaseDevice):
     # Below are the registers for the executive module, so no controller settings
     REG_MAX_ADR = 536
     REG_MAX_NUM = 226
-    REG_CONFIG_START = 302
+    REG_CONFIG_START = 400
 
     # Interaction between status register 202 and config register 304:
     #
@@ -31,20 +31,20 @@ class PCCO(BaseDevice):
         # Status registers
         120: { 'type': 'date', 'name': 'date', 'desc': 'Date' },                      
         124: { 'type': 'time', 'name': 'time', 'desc': 'Time' },                                         
-        130: { 'type': 'te10', 'name': 'T1', 'desc': 'T1 - temp. CWU' },                         
-        132: { 'type': 'te10', 'name': 'T2', 'desc': 'T2 - temp. bufora CO' },                        
-        134: { 'type': 'te10', 'name': 'T3', 'desc': 'T3 - temp. wody na wlocie do skraplacza' },                         
-        136: { 'type': 'te10', 'name': 'T4', 'desc': 'T4 - temp. czynnika za skraplaczem' },                         
-        138: { 'type': 'te10', 'name': 'T5', 'desc': 'T5 - temp. czynnika za skraplaczem2' },                          
-        140: { 'type': 'te10', 'name': 'T6', 'desc': 'T6 - temp. wody na wylocie ze skraplacza' },                          
-        142: { 'type': 'te10', 'name': 'T7', 'desc': 'T7 - temp. powrotu z instalacji CO' },                         
-        144: { 'type': 'te10', 'name': 'T8', 'desc': 'T8 - temp. wody na wylocie z pompy ciepła' },
-        146: { 'type': 'te10', 'name': 'T9', 'desc': 'T9 - temp. powrotu cyrkulacji' },
-        148: { 'type': 'te10', 'name': 'T10', 'desc': 'T10 - temp ???' },
-        150: { 'type': 'te10', 'name': 'T11', 'desc': 'T11 - temp. za mieszaczem CO / na wylocie z bufora' },
-        152: { 'type': 'te10', 'name': 'T12', 'desc': 'T12 - temp. pokojowa obiegu CO1' },
-        154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2' },
-        156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna' },
+        130: { 'type': 'te10', 'name': 'T1', 'desc': 'T1 - temp. CWU [°C]' },                         
+        132: { 'type': 'te10', 'name': 'T2', 'desc': 'T2 - temp. bufora CO [°C]' },                        
+        134: { 'type': 'te10', 'name': 'T3', 'desc': 'T3 - temp. wody na wlocie do skraplacza [°C]' },                         
+        136: { 'type': 'te10', 'name': 'T4', 'desc': 'T4 - temp. czynnika za skraplaczem [°C]' },                         
+        138: { 'type': 'te10', 'name': 'T5', 'desc': 'T5 - temp. czynnika za skraplaczem2 [°C]' },                          
+        140: { 'type': 'te10', 'name': 'T6', 'desc': 'T6 - temp. wody na wylocie ze skraplacza [°C]' },                          
+        142: { 'type': 'te10', 'name': 'T7', 'desc': 'T7 - temp. powrotu z instalacji CO [°C]' },                         
+        144: { 'type': 'te10', 'name': 'T8', 'desc': 'T8 - temp. wody na wylocie z pompy ciepła [°C]' },
+        146: { 'type': 'te10', 'name': 'T9', 'desc': 'T9 - temp. powrotu cyrkulacji [°C]' },
+        148: { 'type': 'te10', 'name': 'T10', 'desc': 'T10 - temp ??? [°C]' },
+        150: { 'type': 'te10', 'name': 'T11', 'desc': 'T11 - temp. za mieszaczem CO / na wylocie z bufora [°C]' },
+        152: { 'type': 'te10', 'name': 'T12', 'desc': 'T12 - temp. pokojowa obiegu CO1 [°C]' },
+        154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2 [°C]' },
+        156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna [°C]' },
         
      #   194: { 'type': 'bool', 'name': 'IsManual' },
         196: { 'type': 'mask', 'name': [
@@ -65,54 +65,33 @@ class PCCO(BaseDevice):
      #   198: { 'type': 'word', 'name': 'EV1', 'desc': 'Expansion valve' },
     #  202: { 'type': 'word', 'name': 'WaitingStatus', 'desc': ' 0 when available for operation, 2 when disabled through register 304' },               #
        
-        316: { 'type': 'te10', 'name': 'T12', 'desc': 'T12 - temp. pokojowa obiegu CO1' },
-        154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2' },
-        156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna' },
-        
+        316: { 'type': 'temp', 'name': 'Zawor_rozprezny', 'desc': 'Stopień otwarcia zaworu rozprężnego' },
+        318: { 'type': 'te10', 'name': 'I', 'desc': 'I - natezenie prądu [A]' },
+        320: { 'type': 'te10', 'name': 'U', 'desc': 'U - napięcie zasilania [V]' },
+        322: { 'type': 'temp', 'name': 'Hz', 'desc': 'Hz - częstotliwość pracy sprężarki [Hz]' },
+        326: { 'type': 'te10', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
+        350: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
+        352: { 'type': 'te10', 'name': 'Tp', 'desc': 'Tp - temp. czynnika w parowniku [°C]' },
+        354: { 'type': 'te10', 'name': 'Td', 'desc': 'Td - temp. czynnika za sprężarką [°C]' },
+        356: { 'type': 'te10', 'name': 'Ts', 'desc': 'Ts - temp. czynnika przed sprężarką [°C]' },
+        380: { 'type': 'te10', 'name': 'HP', 'desc': 'Ts - temp. czynnika w skraplaczu [bar]' },
+        384: { 'type': 'mask', 'name': [
+            'Przełącznik HP',                                             
+            'Przełącznik LP',
+            'Grzałka tacy kondensatu',                                   
+            'Niska temp. dla CWU',
+            'Podgrzewanie sprężarki',
+            'Grzałka karteru sprężarki',                     
+            'Niska praca wentylatora AC',
+            'Wysoka praca wentylatora AC',                    
+            'Zawór 4-drożny',                                            
+          ]},
+
         # Config registers
    
-      #  302: { 'type': 'word', 'name': 'InstallationScheme', 'options': [1,2,3,4,5,6,7,8,9], 'desc': 'Installation Scheme (1-9)' },
-      #  304: { 'type': 'bool', 'name': 'HeatPumpEnabled', 'options': [0,1], 'desc': 'Heat Pump Enabled (True/False)'},
-      #  306: { 'type': 'word', 'name': 'TapWaterSensor', 'options': [0,1,2], 'desc': 'Temp. sensor controlling heat pump operation [T2,T3,T7, factory setting T2]' },                                  #
-      #  308: { 'type': 'te10', 'name': 'TapWaterTemp', 'options':  [100,110,112,130,140,150,160,170,180,190,    #
-    #                                                                200,210,220,230,240,250,260,270,280,290,
-     #                                                               300,310,320,330,340,350,360,370,380,390,
-     #                                                               400,410,420,430,440,450,460,470,480,490,
-    #                                                                500,510,520,530,540,550,560,570,580,590,
-    #                                                                600] , 'desc': 'HUW temperature for heat pump [10-60°C, factory setting 50°C]'},                                 
-    #    310: { 'type': 'te10', 'name': 'TapWaterHysteresis', 'options': [20,30,40,50,60,70,80,90,100] , 'desc': 'Heat pump start-up hysteresis [2-10°C, factory setting 5°C]'},        # 
-     #   312: { 'type': 'te10', 'name': 'AmbientMinTemp', 'options': [-100,-90,-80,-70,-60,-50,-40,-30,-20,-10,  # 
-    #                                                                 10,20,30,40,50,60,70,80,90,100] , 'desc': 'Minimum ambient temperature (T1) [-10-10°C] ' },                                                
-    #    314: { 'type': 'tprg', 'name': 'TimeProgramHPM-F', 'desc': 'Time Program HP M-F (True/False per hour of the day)' },                                                    # 
-    #    318: { 'type': 'tprg', 'name': 'TimeProgramHPSat', 'desc': 'Time Program HP Sat (True/False per hour of the day)' },                                                    # 
-    #    322: { 'type': 'tprg', 'name': 'TimeProgramHPSun', 'desc': 'Time Program HP Sun (True/False per hour of the day)' },                                                    # 
-#
-  #      326: { 'type': 'bool', 'name': 'AntiFreezingEnabled', 'options': [0,1], 'desc': 'Function protecting against freezing [YES/NO], factory setting YES' },                               # 
-    #    328: { 'type': 'word', 'name': 'WaterPumpOperationMode', 'options': [0,1], 'desc': 'Water Pump Operation Mode (0=Continuous, 1=Synchronous)' },                            # 
-    #    330: { 'type': 'word', 'name': 'FanOperationMode', 'options': [0,1,2], 'desc': 'Fan Operation Mode (0=Max, 1=Min, 2=Day/Night), factory MAX' },                                # 
-   #     332: { 'type': 'word', 'name': 'DefrostingInterval', 'desc': 'Defrosting cycle start-up delay [30-90 min., factory setting 45 min.]' },                                                  # 
-    #    334: { 'type': 'te10', 'name': 'DefrostingStartTemp', 'desc': 'Temperature activating defrosting [-30 - 0°C, factory setting -7°C]' },                                                 # 
-    #    336: { 'type': 'te10', 'name': 'DefrostingStopTemp', 'desc': 'Temperature finishing defrosting [2-30°C, factory setting 13°C]' }, 
-   #     338: { 'type': 'word', 'name': 'DefrostingMaxTime', 'desc': 'Maximum defrosting duration [1-12 min., factory setting 8 min.]' },
-
-        #374                                                            # Time Program? Heat pump
-        #406                                                            # Time Program? Heater E
-        #432                                                            # Time Program? Circulating pump [shown in diagrams no. 2,3,4,6,7,8,9]
-        #476                                                            # Time Program? Gas-fired boiler D [shown in diagrams no. 4,7,9]
-
-        #???                                                            # Anti-Legionella [shown in diagrams no. 3-9]
-        #???                                                            # Anti-Legionella function activation [YES/NO, factory setting YES]
-        #???                                                            # Protection carried out by heater E [YES/NO, factory setting YES]
-        #???                                                            # Protection carried out by heater P [YES/NO, factory setting YES]
-        #???                                                            # Protection carried out by gas-fired boiler [YES/NO, factory setting YES, shown in diagrams no. 4,7,9]
-
-     #   516: { 'type': 'bool', 'name': 'ExtControllerHPOFF', 'desc': 'Heat pump deactivation [YES/NO, factory setting YES]' },          
-        #518                                                            # ?? Electric heater E deactivation [YES/NO, factory setting YES]
-        #520                                                            # ?? Electric heater P deactivation [YES/NO, factory setting YES]
-        #522                                                            # ?? Gas-fired boiler shutdown [YES/NO, factory setting YES, shown in diagrams no. 4,7,9]
-        #524                                                            # ?? Shutdown of pump F for solid fuel fired boiler B [YES/NO, factory setting YES, shown in diagrams no. 3,8,9]
-   
-
+        408: { 'type': 'te10', 'name': 'cwu', 'desc': 'Temp. ustawiona CWU [°C]' },
+        410: { 'type': 'te10', 'name': 'co1', 'desc': 'Temp. ustawiona CO1 [°C]' },
+        412: { 'type': 'te10', 'name': 'co2', 'desc': 'Temp. ustawiona CO2 [°C]' }                                                       
     }
 
     def disable(self, ser):
