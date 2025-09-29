@@ -11,7 +11,7 @@ class PCCO(BaseDevice):
     # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
     REG_MAX_ADR = 412
     REG_MAX_NUM = 30
-    REG_CONFIG_START = 400
+    REG_CONFIG_START = 200
 
     registers = {
 
@@ -33,6 +33,7 @@ class PCCO(BaseDevice):
         154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2 [°C]' },
         156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna [°C]' },
         
+        # Config registers
         316: { 'type': 'temp', 'name': 'Zawor_rozprezny', 'desc': 'Stopień otwarcia zaworu rozprężnego' },
         318: { 'type': 'te10', 'name': 'I', 'desc': 'I - natezenie prądu [A]' },
         320: { 'type': 'te10', 'name': 'U', 'desc': 'U - napięcie zasilania [V]' },
@@ -44,8 +45,6 @@ class PCCO(BaseDevice):
         356: { 'type': 'te10', 'name': 'Ts', 'desc': 'Ts - temp. czynnika przed sprężarką [°C]' },
         380: { 'type': 'te10', 'name': 'HP', 'desc': 'Ts - temp. czynnika w skraplaczu [bar]' },
         
-        # Config registers
-   
         408: { 'type': 'te10', 'name': 'cwu', 'desc': 'Temp. ustawiona CWU [°C]' },
         410: { 'type': 'te10', 'name': 'co1', 'desc': 'Temp. ustawiona CO1 [°C]' },
         412: { 'type': 'te10', 'name': 'co2', 'desc': 'Temp. ustawiona CO2 [°C]' }                                                       
