@@ -31,6 +31,7 @@ class PCCO(BaseDevice):
         152: { 'type': 'te10', 'name': 'T12', 'desc': 'T12 - temp. pokojowa obiegu CO1 [°C]' },
         154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2 [°C]' },
         156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna [°C]' },
+        """
         196: { 'type': 'mask', 'name': [
             'Grzanie CO',                                             
             'Grzanie CWU',
@@ -46,7 +47,7 @@ class PCCO(BaseDevice):
             'Ochrona PC - zbyt niska temperatura wody',                                 
             'Wysoka taryfa',                                            
           ]},
-        
+        """
         316: { 'type': 'temp', 'name': 'Zawor_rozprezny', 'desc': 'Stopień otwarcia zaworu rozprężnego' },
         318: { 'type': 'te10', 'name': 'I', 'desc': 'I - natezenie prądu [A]' },
         320: { 'type': 'te10', 'name': 'U', 'desc': 'U - napięcie zasilania [V]' },
@@ -57,6 +58,7 @@ class PCCO(BaseDevice):
         354: { 'type': 'te10', 'name': 'Td', 'desc': 'Td - temp. czynnika za sprężarką [°C]' },
         356: { 'type': 'te10', 'name': 'Ts', 'desc': 'Ts - temp. czynnika przed sprężarką [°C]' },
         380: { 'type': 'te10', 'name': 'HP', 'desc': 'Ts - temp. czynnika w skraplaczu [bar]' },
+        """
         384: { 'type': 'mask', 'name': [
             'Przełącznik HP',                                             
             'Przełącznik LP',
@@ -68,7 +70,7 @@ class PCCO(BaseDevice):
             'Wysoka praca wentylatora AC',                    
             'Zawór 4-drożny',                                            
           ]},
-
+        """
         # Config registers
    
         408: { 'type': 'te10', 'name': 'cwu', 'desc': 'Temp. ustawiona CWU [°C]' },
