@@ -46,7 +46,6 @@ class PCCO(BaseDevice):
         154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2' },
         156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna' }
         
-        """
         194: { 'type': 'bool', 'name': 'IsManual' },
         196: { 'type': 'mask', 'name': [
             'FanON',                                                    # Fan ON (True/False)
