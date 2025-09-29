@@ -44,7 +44,7 @@ class PCCO(BaseDevice):
         150: { 'type': 'te10', 'name': 'T11', 'desc': 'T11 - temp. za mieszaczem CO / na wylocie z bufora' },
         152: { 'type': 'te10', 'name': 'T12', 'desc': 'T12 - temp. pokojowa obiegu CO1' },
         154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2' },
-        156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna' }
+        156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna' },
         
         194: { 'type': 'bool', 'name': 'IsManual' },
         196: { 'type': 'mask', 'name': [
