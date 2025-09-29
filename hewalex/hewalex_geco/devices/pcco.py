@@ -36,17 +36,22 @@ class PCCO(BaseDevice):
         
         # Config registers
 
-        316: { 'type': 'temp', 'name': 'Zawor_rozprezny', 'desc': 'Stopień otwarcia zaworu rozprężnego' },
+        200: { 'type': 'te10', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
+        300: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
+        302: { 'type': 'te10', 'name': 'Tp', 'desc': 'Tp - temp. czynnika w parowniku [°C]' },
+        304: { 'type': 'te10', 'name': 'Td', 'desc': 'Td - temp. czynnika za sprężarką [°C]' },
+        306: { 'type': 'te10', 'name': 'Ts', 'desc': 'Ts - temp. czynnika przed sprężarką [°C]' },
         318: { 'type': 'te10', 'name': 'I', 'desc': 'I - natezenie prądu [A]' },
-        320: { 'type': 'te10', 'name': 'U', 'desc': 'U - napięcie zasilania [V]' },
+        320: { 'type': 'temp', 'name': 'U', 'desc': 'U - napięcie zasilania [V]' },
         322: { 'type': 'temp', 'name': 'Hz', 'desc': 'Hz - częstotliwość pracy sprężarki [Hz]' },
-        326: { 'type': 'te10', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
-        350: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
-        352: { 'type': 'te10', 'name': 'Tp', 'desc': 'Tp - temp. czynnika w parowniku [°C]' },
-        354: { 'type': 'te10', 'name': 'Td', 'desc': 'Td - temp. czynnika za sprężarką [°C]' },
-        356: { 'type': 'te10', 'name': 'Ts', 'desc': 'Ts - temp. czynnika przed sprężarką [°C]' },
-        380: { 'type': 'te10', 'name': 'HP', 'desc': 'Ts - temp. czynnika w skraplaczu [bar]' },
-        408: { 'type': 'te10', 'name': 'cwu', 'desc': 'Temp. ustawiona CWU [°C]' },
-        410: { 'type': 'te10', 'name': 'co1', 'desc': 'Temp. ustawiona CO1 [°C]' },
-        412: { 'type': 'te10', 'name': 'co2', 'desc': 'Temp. ustawiona CO2 [°C]' }                                                       
+        326: { 'type': 'temp', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
+        330: { 'type': 'temp', 'name': 'HP', 'desc': 'Hz - ciśnienie czynnika w skraplaczu [bar]' },
+        380: { 'type': 'temp', 'name': 'HP2', 'desc': 'LP - ciśnienie czynnika w skraplaczu [bar]' },
+    
+ 
+
+
+       408: { 'type': 'te10', 'name': 'cwu', 'desc': 'Temp. ustawiona CWU [°C]' },
+       410: { 'type': 'te10', 'name': 'co1', 'desc': 'Temp. ustawiona CO1 [°C]' },
+       412: { 'type': 'te10', 'name': 'co2', 'desc': 'Temp. ustawiona CO2 [°C]' }                                                       
     }
