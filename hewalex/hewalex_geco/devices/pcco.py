@@ -36,9 +36,9 @@ class PCCO(BaseDevice):
             'Niska temp. dla CO',                                   
             'Niska temp. dla CWU',
             'Pompa ciepła wyłączona',
-            '[C01] Ochrona skraplacza przed zamarznięciem w trybie chłodzenia - poziom 1',                     
-            '[C01] Ochrona skraplacza przed zamarznięciem w trybie chłodzenia - poziom 2',
-            '[C02] Blokada chłodzenia',
+            'Ochrona skraplacza przed zamarznięciem lv1',                     
+            'Ochrona skraplacza przed zamarznięciem lv2',
+            'Blokada chłodzenia',
             'Za wysoka temperatura na wyjściu',
             'Za niska temperatura na wyjściu',
             'Brak przepływu',
@@ -48,7 +48,7 @@ class PCCO(BaseDevice):
         
         # Rejestry konfiguracji
 
-        200: { 'type': 'te10', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
+        #200: { 'type': 'te10', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
         300: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
         302: { 'type': 'te10', 'name': 'Tp', 'desc': 'Tp - temp. czynnika w parowniku [°C]' },
         304: { 'type': 'te10', 'name': 'Td', 'desc': 'Td - temp. czynnika za sprężarką [°C]' },
