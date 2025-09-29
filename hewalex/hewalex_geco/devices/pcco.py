@@ -11,7 +11,7 @@ class PCCO(BaseDevice):
     # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
     REG_MAX_ADR = 412
     REG_MAX_NUM = 5
-    REG_CONFIG_START = 200
+    REG_CONFIG_START = 400
 
     registers = {
 
@@ -45,10 +45,7 @@ class PCCO(BaseDevice):
             'Ochrona PC - zbyt niska temperatura wody',                                 
             'Wysoka taryfa',                                            
           ]},
-        
-        # Rejestry konfiguracji
-
-        #200: { 'type': 'te10', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
+       #200: { 'type': 'temp', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
         300: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
         302: { 'type': 'te10', 'name': 'Tp', 'desc': 'Tp - temp. czynnika w parowniku [°C]' },
         304: { 'type': 'te10', 'name': 'Td', 'desc': 'Td - temp. czynnika za sprężarką [°C]' },
@@ -58,6 +55,7 @@ class PCCO(BaseDevice):
         322: { 'type': 'temp', 'name': 'Hz', 'desc': 'Hz - częstotliwość pracy sprężarki [Hz]' },
         326: { 'type': 'fl10', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
         330: { 'type': 'fl10', 'name': 'HP', 'desc': 'HP - ciśnienie czynnika w skraplaczu [bar]' },
+        # Rejestry konfiguracji
 
         408: { 'type': 'te10', 'name': 'cwu', 'desc': 'Temp. ustawiona CWU [°C]' },
         410: { 'type': 'te10', 'name': 'co1', 'desc': 'Temp. ustawiona CO1 [°C]' },
