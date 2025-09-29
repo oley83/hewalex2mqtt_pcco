@@ -10,7 +10,7 @@ class PCCO(BaseDevice):
     # PCCO sterowany jest za pomocą kontrolera PG-426-P04 i modułu wykonawczego MG-426-P04
     # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
     REG_MAX_ADR = 412
-    REG_MAX_NUM = 5
+    REG_MAX_NUM = 20
     REG_CONFIG_START = 300
 
     registers = {
@@ -45,7 +45,7 @@ class PCCO(BaseDevice):
             'Ochrona PC - zbyt niska temperatura wody',                                 
             'Wysoka taryfa',                                            
           ]},
-        #200: { 'type': 'temp', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
+        200: { 'type': 'temp', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
        
         # Rejestry konfiguracji
         300: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
