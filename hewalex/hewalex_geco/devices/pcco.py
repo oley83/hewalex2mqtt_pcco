@@ -44,14 +44,10 @@ class PCCO(BaseDevice):
         318: { 'type': 'te10', 'name': 'I', 'desc': 'I - natezenie prądu [A]' },
         320: { 'type': 'temp', 'name': 'U', 'desc': 'U - napięcie zasilania [V]' },
         322: { 'type': 'temp', 'name': 'Hz', 'desc': 'Hz - częstotliwość pracy sprężarki [Hz]' },
-        326: { 'type': 'temp', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
-        330: { 'type': 'temp', 'name': 'HP', 'desc': 'Hz - ciśnienie czynnika w skraplaczu [bar]' },
-        380: { 'type': 'temp', 'name': 'HP2', 'desc': 'LP - ciśnienie czynnika w skraplaczu [bar]' },
-    
- 
+        326: { 'type': 'fl10', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
+        330: { 'type': 'fl10', 'name': 'HP', 'desc': 'HP - ciśnienie czynnika w skraplaczu [bar]' },
 
-
-       408: { 'type': 'te10', 'name': 'cwu', 'desc': 'Temp. ustawiona CWU [°C]' },
-       410: { 'type': 'te10', 'name': 'co1', 'desc': 'Temp. ustawiona CO1 [°C]' },
-       412: { 'type': 'te10', 'name': 'co2', 'desc': 'Temp. ustawiona CO2 [°C]' }                                                       
+        408: { 'type': 'te10', 'name': 'cwu', 'desc': 'Temp. ustawiona CWU [°C]' },
+        410: { 'type': 'te10', 'name': 'co1', 'desc': 'Temp. ustawiona CO1 [°C]' },
+        412: { 'type': 'te10', 'name': 'co2', 'desc': 'Temp. ustawiona CO2 [°C]' }                                                       
     }
