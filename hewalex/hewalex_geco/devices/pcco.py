@@ -57,7 +57,7 @@ class PCCO(BaseDevice):
         322: { 'type': 'temp', 'name': 'Hz', 'desc': 'Hz - częstotliwość pracy sprężarki [Hz]' },
         326: { 'type': 'fl10', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
         330: { 'type': 'fl10', 'name': 'HP', 'desc': 'HP - ciśnienie czynnika w skraplaczu [bar]' },
-        408: { 'type': 'te10', 'name': 'cwu', 'desc': 'Temp. ustawiona CWU [°C]' },
-        410: { 'type': 'te10', 'name': 'co1', 'desc': 'Temp. ustawiona CO1 [°C]' },
-        #412: { 'type': 'te10', 'name': 'co2', 'desc': 'Temp. ustawiona CO2 [°C]' }                                                       
+        408: { 'type': 'te10', 'name': 'CWU', 'desc': 'Temp. ustawiona CWU [°C]' },
+        410: { 'type': 'te10', 'name': 'CO1', 'desc': 'Temp. ustawiona CO1 [°C]' },
+        #412: { 'type': 'te10', 'name': 'CO2', 'desc': 'Temp. ustawiona CO2 [°C]' }                                                       
     }
