@@ -269,7 +269,7 @@ def device_readregisters_enqueue():   #Pobiera dane z pompy co x sekund
         # Odczyt konfiguracji tylko jeśli jest włączony w konfiguracji
         if _Read_Config_Enabled:
             # Dłuższe opóźnienie między odczytem statusu a konfiguracji
-            time.sleep(15)
+            time.sleep(5)
             
             # Próbuj odczytać konfigurację, ale jeśli się nie uda, nie przerywaj całkowicie
             try:
