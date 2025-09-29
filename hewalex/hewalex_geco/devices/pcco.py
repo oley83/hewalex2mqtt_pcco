@@ -44,7 +44,7 @@ class PCCO(BaseDevice):
         150: { 'type': 'te10', 'name': 'T11', 'desc': 'T11 - temp. za mieszaczem CO / na wylocie z bufora' },
         152: { 'type': 'te10', 'name': 'T12', 'desc': 'T12 - temp. pokojowa obiegu CO1' },
         154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2' },
-        156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna' },
+        156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna' }
         
         """
         194: { 'type': 'bool', 'name': 'IsManual' },
@@ -65,9 +65,9 @@ class PCCO(BaseDevice):
         ]},
         198: { 'type': 'word', 'name': 'EV1', 'desc': 'Expansion valve' },
         202: { 'type': 'word', 'name': 'WaitingStatus', 'desc': ' 0 when available for operation, 2 when disabled through register 304' },               #
-        """
+     
         # Config registers
-        """
+   
         302: { 'type': 'word', 'name': 'InstallationScheme', 'options': [1,2,3,4,5,6,7,8,9], 'desc': 'Installation Scheme (1-9)' },
         304: { 'type': 'bool', 'name': 'HeatPumpEnabled', 'options': [0,1], 'desc': 'Heat Pump Enabled (True/False)'},
         306: { 'type': 'word', 'name': 'TapWaterSensor', 'options': [0,1,2], 'desc': 'Temp. sensor controlling heat pump operation [T2,T3,T7, factory setting T2]' },                                  #
@@ -108,7 +108,7 @@ class PCCO(BaseDevice):
         #520                                                            # ?? Electric heater P deactivation [YES/NO, factory setting YES]
         #522                                                            # ?? Gas-fired boiler shutdown [YES/NO, factory setting YES, shown in diagrams no. 4,7,9]
         #524                                                            # ?? Shutdown of pump F for solid fuel fired boiler B [YES/NO, factory setting YES, shown in diagrams no. 3,8,9]
-        """
+   
 
     }
 
