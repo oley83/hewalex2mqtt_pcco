@@ -10,12 +10,12 @@ class PCCO(BaseDevice):
     # PCCO sterowany jest za pomocą kontrolera PG-426-P04 i modułu wykonawczego MG-426-P04
     # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
     REG_MAX_ADR = 412
-    REG_MAX_NUM = 20
+    REG_MAX_NUM = 5
     REG_CONFIG_START = 200
 
     registers = {
 
-        # Status registers
+        # Rejestry statusów
         120: { 'type': 'date', 'name': 'date', 'desc': 'Date' },                      
         124: { 'type': 'time', 'name': 'time', 'desc': 'Time' },                                         
         130: { 'type': 'te10', 'name': 'T1', 'desc': 'T1 - temp. CWU [°C]' },                         
@@ -32,7 +32,7 @@ class PCCO(BaseDevice):
         156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna [°C]' },
 
         
-        # Config registers
+        # Rejestry konfiguracji
 
         200: { 'type': 'te10', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
         300: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
@@ -42,8 +42,8 @@ class PCCO(BaseDevice):
         318: { 'type': 'te10', 'name': 'I', 'desc': 'I - natezenie prądu [A]' },
         320: { 'type': 'temp', 'name': 'U', 'desc': 'U - napięcie zasilania [V]' },
         322: { 'type': 'temp', 'name': 'Hz', 'desc': 'Hz - częstotliwość pracy sprężarki [Hz]' },
-        326: { 'type': 'temp', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
-        330: { 'type': 'temp', 'name': 'HP', 'desc': 'HP - ciśnienie czynnika w skraplaczu [bar]' },
+        326: { 'type': 'fl10', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
+        330: { 'type': 'fl10', 'name': 'HP', 'desc': 'HP - ciśnienie czynnika w skraplaczu [bar]' },
 
         408: { 'type': 'te10', 'name': 'cwu', 'desc': 'Temp. ustawiona CWU [°C]' },
         410: { 'type': 'te10', 'name': 'co1', 'desc': 'Temp. ustawiona CO1 [°C]' },
