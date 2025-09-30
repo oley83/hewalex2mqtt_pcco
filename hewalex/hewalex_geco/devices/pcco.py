@@ -45,7 +45,7 @@ class PCCO(BaseDevice):
             'Ochrona PC - zbyt niska temperatura wody',                                 
             'Wysoka taryfa',                                            
           ]},
-        200: { 'type': 'temp', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
+        200: { 'type': 'te10', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
        
         # Rejestry konfiguracji
         300: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
