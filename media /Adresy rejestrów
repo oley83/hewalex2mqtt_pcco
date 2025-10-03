@@ -1,3 +1,6 @@
+****Adresy rejestrów na podstawie ratajczykmarcin/hewalex_V2****
+
+
 var local = flow.get('listaParametrow');
 if (local == undefined) {
     local = {
