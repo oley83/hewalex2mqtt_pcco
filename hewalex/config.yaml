@@ -32,11 +32,7 @@
 		"Device_Pcco_MqttTopic": "PCCO Mono"
 	},
 	"schema": {
-		"mqtt_ip": {
-        "name": "Adres IP Brokera MQTT",
-        "description": "Wpisz adres IP lub nazwę hosta (np. core-mosquitto).",
-        "type": "str"
-   		},
+		"mqtt_ip": "str",
 		"mqtt_port": "port",
 		"mqtt_authentication": "bool",
 		"mqtt_user": "str?",
