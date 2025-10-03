@@ -61,17 +61,18 @@ class PCCO(BaseDevice):
             'Grzałka CWU on',                               
             'Grzałka CO on',                                           
           ]},
-        212: { 'type': 'te10', 'name': 'PS', 'desc': 'Bieg pompy skraplacza' },
+        214: { 'type': 'te10', 'name': 'PS', 'desc': 'Bieg pompy skraplacza' },
         300: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
         302: { 'type': 'te10', 'name': 'Tp', 'desc': 'Tp - temp. czynnika w parowniku [°C]' },
         304: { 'type': 'te10', 'name': 'Td', 'desc': 'Td - temp. czynnika za sprężarką [°C]' },
         306: { 'type': 'te10', 'name': 'Ts', 'desc': 'Ts - temp. czynnika przed sprężarką [°C]' },
-        316: { 'type': 'te10', 'name': 'EV', 'desc': 'stopień otwarcia zaworu rozprężnego' },
+        316: { 'type': 'temp', 'name': 'EV', 'desc': 'EV - pozycja otwarcia zaworu rozprężnego' },
         318: { 'type': 'te10', 'name': 'I', 'desc': 'I - natezenie prądu [A]' },
         320: { 'type': 'temp', 'name': 'U', 'desc': 'U - napięcie zasilania [V]' },
         322: { 'type': 'temp', 'name': 'Hz', 'desc': 'Hz - częstotliwość pracy sprężarki [Hz]' },
         326: { 'type': 'fl10', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
         330: { 'type': 'fl10', 'name': 'HP', 'desc': 'HP - ciśnienie czynnika w skraplaczu [bar]' },
+        332: { 'type': 'fl10', 'name': 'Rozmrazanie', 'desc': 'Status rozmrażania' },
       
         # Rejestry konfiguracji
 
