@@ -47,45 +47,5 @@
 		"Device_Pcco_Address": "str",
 		"Device_Pcco_Port": "port",
 		"Device_Pcco_MqttTopic": "str"
-	},
-	"translations": {
-		"en": {
-			"configuration": {
-				"mqtt_ip": "MQTT Broker IP",
-				"mqtt_port": "MQTT Broker Port",
-				"mqtt_authentication": "MQTT Authentication",
-				"mqtt_user": "MQTT Username",
-				"mqtt_pass": "MQTT Password",
-				"Read_only_mode": "Read Only Mode",
-				"Read_config_enabled": "Read Configuration Registers",
-				"Print_mqtt_topics": "Print MQTT Topics on Startup",
-				"Serial_timeout": "Serial Communication Timeout (seconds)",
-				"Max_retries": "Maximum Communication Retries",
-				"Polling_interval": "Polling Interval (seconds)",
-				"Device_Pcco_Enabled": "PCCO Device Enabled",
-				"Device_Pcco_Address": "PCCO Device IP Address",
-				"Device_Pcco_Port": "PCCO Device Port",
-				"Device_Pcco_MqttTopic": "PCCO MQTT Topic Prefix"
-			}
-		},
-		"pl": {
-			"configuration": {
-				"mqtt_ip": "Adres IP brokera MQTT",
-				"mqtt_port": "Port brokera MQTT",
-				"mqtt_authentication": "Uwierzytelnianie MQTT",
-				"mqtt_user": "Nazwa użytkownika MQTT",
-				"mqtt_pass": "Hasło MQTT",
-				"Read_only_mode": "Tryb tylko do odczytu",
-				"Read_config_enabled": "Odczyt rejestrów konfiguracyjnych",
-				"Print_mqtt_topics": "Wyświetl tematy MQTT przy starcie",
-				"Serial_timeout": "Timeout komunikacji szeregowej (sekundy)",
-				"Max_retries": "Maksymalna liczba ponownych prób",
-				"Polling_interval": "Interwał odczytu (sekundy)",
-				"Device_Pcco_Enabled": "Urządzenie PCCO włączone",
-				"Device_Pcco_Address": "Adres IP urządzenia PCCO",
-				"Device_Pcco_Port": "Port urządzenia PCCO",
-				"Device_Pcco_MqttTopic": "Prefiks tematów MQTT dla PCCO"
-			}
-		}
 	}
 }
