@@ -1,6 +1,6 @@
 {
 	"name": "Hewalex2MQTT-PCCO-Mono",
-	"version": "0.0.91",
+	"version": "0.0.92",
 	"slug": "hewalex",
 	"description": "Monitoring pomp ciepła Hewalex PCCO Mono",
 	"url": "https://github.com/oley83/hewalex2mqtt_pcco/",
@@ -32,7 +32,11 @@
 		"Device_Pcco_MqttTopic": "PCCO Mono"
 	},
 	"schema": {
-		"mqtt_ip": "str",
+		"mqtt_ip": {
+        "name": "Adres IP Brokera MQTT",
+        "description": "Wpisz adres IP lub nazwę hosta (np. core-mosquitto).",
+        "type": "str"
+   		},
 		"mqtt_port": "port",
 		"mqtt_authentication": "bool",
 		"mqtt_user": "str?",
