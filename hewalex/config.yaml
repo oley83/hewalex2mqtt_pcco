@@ -31,21 +31,30 @@
 		"Device_Pcco_Port": 4196,
 		"Device_Pcco_MqttTopic": "PCCO Mono"
 	},
-	"schema": {
-		"mqtt_ip": "str",
-		"mqtt_port": "port",
-		"mqtt_authentication": "bool",
-		"mqtt_user": "str?",
-		"mqtt_pass": "str?",
-		"Read_only_mode": "bool",
-		"Read_config_enabled": "bool",
-		"Print_mqtt_topics": "bool",
-		"Serial_timeout": "int",
-  		"Max_retries": "int",
-  		"Polling_interval": "int",
-		"Device_Pcco_Enabled": "bool",
-		"Device_Pcco_Address": "str",
-		"Device_Pcco_Port": "port",
-		"Device_Pcco_MqttTopic": "str"
-	}
+"schema": {
+    "mqtt_ip": {
+        "name": "Adres IP Brokera MQTT",
+        "description": "Wpisz adres IP lub nazwę hosta (np. core-mosquitto).",
+        "type": "str"
+    },
+    "mqtt_port": {
+        "name": "Port MQTT",
+        "description": "Domyślnie 1883.",
+        "type": "port"
+    },
+    "mqtt_authentication": {
+        "name": "Wymagane uwierzytelnienie",
+        "type": "bool"
+    },
+    "Read_only_mode": {
+        "name": "Tryb tylko do odczytu",
+        "description": "Zapobiega wysyłaniu poleceń sterujących do pompy ciepła.",
+        "type": "bool"
+    },
+    // ... i analogicznie dla wszystkich pozostałych zmiennych
+    "Device_Pcco_MqttTopic": {
+        "name": "Bazowy Temat MQTT dla PCCO",
+        "type": "str"
+    }
+}
 }
