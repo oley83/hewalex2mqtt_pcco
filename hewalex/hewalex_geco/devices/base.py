@@ -5,7 +5,7 @@ from ..crc import *
 
 # Batch delay between register read batches (in seconds)
 # Możesz zmienić tę wartość na odpowiednią dla Twojego urządzenia
-BATCH_DELAY = 1.0  # seconds
+BATCH_DELAY = 0.5  # seconds
 
 # Based on work by krzysztof1111111111
 # https://www.elektroda.pl/rtvforum/topic3499254.html
