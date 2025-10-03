@@ -227,7 +227,7 @@ def on_message_serial(obj, h, sh, m):
                 key = topic + '/' + str(item[0])
                 val = str(item[1])
                
-              if key not in MessageCache or MessageCache[key] != val:    #Sprawdza czy wartość się zmieniła (unika duplikatów) -
+              if key not in MessageCache or MessageCache[key] != val:    #Sprawdza czy wartość się zmieniła (unika duplikatów)
                 
                     MessageCache[key] = val
                     logger.info(f"Publishing: {key} = {val}")
