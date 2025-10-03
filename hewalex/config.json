@@ -1,6 +1,6 @@
 {
 	"name": "Hewalex2MQTT-PCCO-Mono",
-	"version": "0.0.85",
+	"version": "0.0.86",
 	"slug": "hewalex",
 	"description": "Monitoring pomp ciepła Hewalex PCCO Mono",
 	"url": "https://github.com/oley83/hewalex2mqtt_pcco/",
@@ -32,20 +32,82 @@
 		"Device_Pcco_MqttTopic": "PCCO Mono"
 	},
 	"schema": {
-		"mqtt_ip": "str",
-		"mqtt_port": "port",
-		"mqtt_authentication": "bool",
-		"mqtt_user": "str?",
-		"mqtt_pass": "str?",
-		"Read_only_mode": "bool",
-		"Read_config_enabled": "bool",
-		"Print_mqtt_topics": "bool",
-		"Serial_timeout": "int",
-  		"Max_retries": "int",
-  		"Polling_interval": "int",
-		"Device_Pcco_Enabled": "bool",
-		"Device_Pcco_Address": "str",
-		"Device_Pcco_Port": "port",
-		"Device_Pcco_MqttTopic": "str"
+		"mqtt_ip": {
+			"name": "MQTT Broker IP",
+			"description": "Adres IP brokera MQTT (domyślnie: core-mosquitto dla wbudowanego)",
+			"type": "str"
+		},
+		"mqtt_port": {
+			"name": "MQTT Broker Port", 
+			"description": "Port brokera MQTT (domyślnie: 1883)",
+			"type": "port"
+		},
+		"mqtt_authentication": {
+			"name": "MQTT Authentication",
+			"description": "Włącz uwierzytelnianie MQTT",
+			"type": "bool"
+		},
+		"mqtt_user": {
+			"name": "MQTT Username",
+			"description": "Nazwa użytkownika do brokera MQTT",
+			"type": "str",
+			"required": false
+		},
+		"mqtt_pass": {
+			"name": "MQTT Password", 
+			"description": "Hasło do brokera MQTT",
+			"type": "str",
+			"required": false
+		},
+		"Read_only_mode": {
+			"name": "Read Only Mode",
+			"description": "Bezpieczny tryb tylko do odczytu - blokuje możliwość zapisu do sterownika",
+			"type": "bool"
+		},
+		"Read_config_enabled": {
+			"name": "Read Configuration Registers",
+			"description": "Włącz odczyt rejestrów konfiguracyjnych (zwiększa czas odczytu)",
+			"type": "bool"
+		},
+		"Print_mqtt_topics": {
+			"name": "Print MQTT Topics",
+			"description": "Wyświetl listę dostępnych tematów MQTT przy starcie",
+			"type": "bool"
+		},
+		"Serial_timeout": {
+			"name": "Serial Timeout",
+			"description": "Czas oczekiwania na odpowiedź urządzenia (sekundy)",
+			"type": "int"
+		},
+		"Max_retries": {
+			"name": "Max Retries",
+			"description": "Maksymalna liczba ponownych prób przy błędach komunikacji",
+			"type": "int"
+		},
+		"Polling_interval": {
+			"name": "Polling Interval", 
+			"description": "Interwał odczytu danych ze sterownika (sekundy)",
+			"type": "int"
+		},
+		"Device_Pcco_Enabled": {
+			"name": "PCCO Device Enabled",
+			"description": "Włącz komunikację z urządzeniem PCCO",
+			"type": "bool"
+		},
+		"Device_Pcco_Address": {
+			"name": "PCCO Device Address",
+			"description": "Adres IP sterownika PCCO (lub nazwa hosta)",
+			"type": "str"
+		},
+		"Device_Pcco_Port": {
+			"name": "PCCO Device Port",
+			"description": "Port komunikacyjny sterownika PCCO (domyślnie: 4196)",
+			"type": "port"
+		},
+		"Device_Pcco_MqttTopic": {
+			"name": "PCCO MQTT Topic",
+			"description": "Prefiks tematów MQTT dla danych z PCCO",
+			"type": "str"
+		}
 	}
 }
