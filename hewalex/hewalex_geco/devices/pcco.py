@@ -58,8 +58,8 @@ class PCCO(BaseDevice):
             None,   
             None,   
             None,
-            'GrzałkaCWU',                               
-            'GrzałkaCO',                                           
+            'GrzalkaCWU',                               
+            'GrzalkaCO',                                           
           ]},
         214: { 'type': 'te10', 'name': 'PS', 'desc': 'Bieg pompy skraplacza' },
   
