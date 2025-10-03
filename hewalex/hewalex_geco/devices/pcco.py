@@ -11,7 +11,7 @@ class PCCO(BaseDevice):
     # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
     REG_MAX_ADR = 450
     REG_MAX_NUM = 10
-    REG_CONFIG_START = 400
+    REG_CONFIG_START = 300
 
     registers = {
 
@@ -61,7 +61,9 @@ class PCCO(BaseDevice):
             'Grzałka CWU on',                               
             'Grzałka CO on',                                           
           ]},
-        #214: { 'type': 'te10', 'name': 'PS', 'desc': 'Bieg pompy skraplacza' },
+        214: { 'type': 'te10', 'name': 'PS', 'desc': 'Bieg pompy skraplacza' },
+        # Rejestry konfiguracji
+
         300: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
         302: { 'type': 'te10', 'name': 'Tp', 'desc': 'Tp - temp. czynnika w parowniku [°C]' },
         304: { 'type': 'te10', 'name': 'Td', 'desc': 'Td - temp. czynnika za sprężarką [°C]' },
@@ -73,9 +75,6 @@ class PCCO(BaseDevice):
         326: { 'type': 'fl10', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
         330: { 'type': 'fl10', 'name': 'HP', 'desc': 'HP - ciśnienie czynnika w skraplaczu [bar]' },
         332: { 'type': 'bool', 'name': 'Rozmrazanie', 'desc': 'Status rozmrażania' },
-      
-        # Rejestry konfiguracji
-
         408: { 'type': 'te10', 'name': 'CWU', 'desc': 'Temp. ustawiona CWU [°C]' },
         410: { 'type': 'te10', 'name': 'CO1', 'desc': 'Temp. ustawiona CO1 [°C]' },
         #412: { 'type': 'te10', 'name': 'CO2', 'desc': 'Temp. ustawiona CO2 [°C]' }                                                       
