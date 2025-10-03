@@ -227,10 +227,9 @@ def on_message_serial(obj, h, sh, m):
                     continue
                 key = topic + '/' + str(item[0])
                 val = str(item[1])
-                
-                    MessageCache[key] = val
-                    logger.info(f"Publishing: {key} = {val}")
-                    client.publish(key, val, retain=True)
+                MessageCache[key] = val
+                logger.info(f"Publishing: {key} = {val}")
+                client.publish(key, val, retain=True)
         elif sh["FNC"] == 0x40:  # Zapis rejestrów - normalne, nie loguj jako błąd
             logger.debug("Write operation acknowledged")
         else:
