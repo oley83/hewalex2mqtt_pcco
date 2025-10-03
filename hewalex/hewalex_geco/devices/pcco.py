@@ -72,7 +72,7 @@ class PCCO(BaseDevice):
         322: { 'type': 'temp', 'name': 'Hz', 'desc': 'Hz - częstotliwość pracy sprężarki [Hz]' },
         326: { 'type': 'fl10', 'name': 'LP', 'desc': 'LP - ciśnienie czynnika w parowniku [bar]' },
         330: { 'type': 'fl10', 'name': 'HP', 'desc': 'HP - ciśnienie czynnika w skraplaczu [bar]' },
-        332: { 'type': 'fl10', 'name': 'Rozmrazanie', 'desc': 'Status rozmrażania' },
+        332: { 'type': 'bool', 'name': 'Rozmrazanie', 'desc': 'Status rozmrażania' },
       
         # Rejestry konfiguracji
 
