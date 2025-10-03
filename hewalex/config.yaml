@@ -1,0 +1,51 @@
+{
+	"name": "Hewalex2MQTT-PCCO-Mono",
+	"version": "0.0.87",
+	"slug": "hewalex",
+	"description": "Monitoring pomp ciepła Hewalex PCCO Mono",
+	"url": "https://github.com/oley83/hewalex2mqtt_pcco/",
+	"arch": [
+		"armv7",
+		"aarch64",
+		"amd64",
+		"i386"
+	],
+	"startup": "application",
+	"init": "false",
+	"boot": "auto",
+	"host_network": "true",
+	"options": {
+		"mqtt_ip": "core-mosquitto",
+		"mqtt_port": 1883,
+		"mqtt_authentication": true,
+		"mqtt_user": "mqtt",
+		"mqtt_pass": "mqtt_narcyzowa",
+		"Read_only_mode": true,
+		"Read_config_enabled": false,
+		"Print_mqtt_topics": false,
+		"Serial_timeout": 10,
+  		"Max_retries": 2,
+  		"Polling_interval": 60,
+		"Device_Pcco_Enabled": true,
+		"Device_Pcco_Address": "192.168.0.70",
+		"Device_Pcco_Port": 4196,
+		"Device_Pcco_MqttTopic": "PCCO Mono"
+	},
+	"schema": {
+		"mqtt_ip": "str",
+		"mqtt_port": "port",
+		"mqtt_authentication": "bool",
+		"mqtt_user": "str?",
+		"mqtt_pass": "str?",
+		"Read_only_mode": "bool",
+		"Read_config_enabled": "bool",
+		"Print_mqtt_topics": "bool",
+		"Serial_timeout": "int",
+  		"Max_retries": "int",
+  		"Polling_interval": "int",
+		"Device_Pcco_Enabled": "bool",
+		"Device_Pcco_Address": "str",
+		"Device_Pcco_Port": "port",
+		"Device_Pcco_MqttTopic": "str"
+	}
+}
