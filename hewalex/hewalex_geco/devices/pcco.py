@@ -11,7 +11,7 @@ class PCCO(BaseDevice):
     # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
     REG_MAX_ADR = 450
     REG_MAX_NUM = 10
-    REG_CONFIG_START = 200
+    REG_CONFIG_START = 300       #Prawdopodobnie pierwszy rejestr kongiguracj, jeśli się zmieni to nie czyta wszystkich wartości
 
     registers = {
 
