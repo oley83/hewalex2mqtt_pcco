@@ -21,7 +21,8 @@ conHardId2 = 1
 conSoftId2 = 1
 
 # Device ID (Slave - PCCO) - identyfikator ID pompy ciepła - NIE ZMIENIAJ, działa poprawnie!
-devHardId = 2
+#devHardId = 2
+devHardId = 11
 devSoftId = 2
 
 # mqtt
