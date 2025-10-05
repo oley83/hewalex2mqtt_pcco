@@ -48,7 +48,7 @@ class PCCO(BaseDevice):
         200: { 'type': 'te10', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
         208: { 'type': 'mask', 'name': [
             'PompaSkraplacza',                                             
-            'PompaObiegowaSkraplacza',
+            None,
             None,                                   
             None,       
             None,  
