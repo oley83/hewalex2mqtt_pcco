@@ -61,7 +61,7 @@ class PCCO(BaseDevice):
             'GrzalkaCWU',                               
             'GrzalkaCO',                                           
           ]},
-        214: { 'type': 'te10', 'name': 'PS', 'desc': 'Bieg pompy skraplacza' },
+        212: { 'type': 'te10', 'name': 'PS', 'desc': 'Bieg pompy skraplacza' },
   
         # Rejestry konfiguracji
         300: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
