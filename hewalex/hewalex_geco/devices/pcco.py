@@ -9,7 +9,7 @@ class PCCO(BaseDevice):
 
     # PCCO sterowany jest za pomocą kontrolera PG-426-P04 i modułu wykonawczego MG-426-P04
     # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
-    REG_MAX_ADR = 450
+    REG_MAX_ADR = 410
     REG_MAX_NUM = 10
     REG_CONFIG_START = 300       #Prawdopodobnie pierwszy rejestr kongiguracj, jeśli się zmieni to nie czyta wszystkich wartości
 
