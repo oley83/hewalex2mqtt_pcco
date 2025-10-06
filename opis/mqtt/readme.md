@@ -1,1 +1,1 @@
-wecfewdcf
+Pliki konfiguracyjne HA sensorów MQTT
