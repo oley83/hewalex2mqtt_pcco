@@ -10,6 +10,8 @@ Ustawienia-Dodatki-Sklep z dodatkami-trzy kropki (...)-Repozytoria
 
 Dodaj repozytorium: https://github.com/oley83/hewalex2mqtt_pcco/
 
+
 Do komunikacji wymagany jest Mosquitto broker.
+
 
 Używasz na własne rysyko.
