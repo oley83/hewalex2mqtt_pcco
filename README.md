@@ -12,4 +12,4 @@ Dodaj repozytorium: https://github.com/oley83/hewalex2mqtt_pcco/
 
 Do komunikacji wymagany jest Mosquitto broker.
 
-Używasz na własne rysyko.
+#Używasz na własne rysyko.
