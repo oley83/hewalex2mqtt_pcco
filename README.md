@@ -10,6 +10,6 @@ Ustawienia-Dodatki-Sklep z dodatkami-trzy kropki (...)-Repozytoria
 
 Dodaj repozytorium: https://github.com/oley83/hewalex2mqtt_pcco/
 
-Do komunikacji wymagany jest Mosquitto broker.
+Do komunikacji wymagany jest dodatek Mosquitto broker oraz konwerter RS485 do Enthernet.
 
 Używasz na własne rysyko.
