@@ -7,6 +7,7 @@ Dane z jednostki zabezpieczającej nie są  narazie pobierane.
 
 Instalacja:
 Ustawienia-Dodatki-Sklep z dodatkami-trzy kropki (...)-Repozytoria
+
 Dodaj repozytorium: https://github.com/oley83/hewalex2mqtt_pcco/
 
 Do komunikacji wymagany jest Mosquitto broker.
