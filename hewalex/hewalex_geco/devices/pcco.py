@@ -9,7 +9,7 @@ class PCCO(BaseDevice):
 
     # PCCO sterowany jest za pomocą kontrolera PG-426-P04 i modułu wykonawczego MG-426-P04
     # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
-    REG_MAX_ADR = 410
+    REG_MAX_ADR = 412
     REG_MAX_NUM = 112
     REG_CONFIG_START = 300       #Prawdopodobnie pierwszy rejestr kongiguracj, jeśli się zmieni to nie czyta wszystkich wartości
 
@@ -25,39 +25,41 @@ class PCCO(BaseDevice):
         140: { 'type': 'te10', 'name': 'T6', 'desc': 'T6 - temp. wody na wylocie ze skraplacza [°C]' },                          
         142: { 'type': 'te10', 'name': 'T7', 'desc': 'T7 - temp. powrotu z instalacji CO [°C]' },                         
         144: { 'type': 'te10', 'name': 'T8', 'desc': 'T8 - temp. wody na wylocie z pompy ciepła [°C]' },
-        146: { 'type': 'te10', 'name': 'T9', 'desc': 'T9 - temp. powrotu cyrkulacji [°C]' },
+        146: { 'type': 'te10', 'name': 'T9', 'desc': 'T9 - temp. powrotu z cyrkulacji [°C]' },
         150: { 'type': 'te10', 'name': 'T11', 'desc': 'T11 - temp. za mieszaczem CO / na wylocie z bufora [°C]' },
         152: { 'type': 'te10', 'name': 'T12', 'desc': 'T12 - temp. pokojowa obiegu CO1 [°C]' },
         154: { 'type': 'te10', 'name': 'T13', 'desc': 'T13 - temp. pokojowa obiegu CO2 [°C]' },
         156: { 'type': 'te10', 'name': 'T14', 'desc': 'T14 - temp. zewnętrzna [°C]' },
+        158: { 'type': 'te10', 'name': 'T15', 'desc': 'T15 - czyjnik przepływu' },
+        160: { 'type': 'te10', 'name': 'PV', 'desc': 'PV - współpraca z PV' },
         196: { 'type': 'mask', 'name': [
             'GrzanieCO',                                             
             'GrzanieCWU',
             None,       #'Niska temp. dla CO',                                   
             None,       #'Niska temp. dla CWU',
-            'PC wyłaczona',
+            'PC_wylaczona',
             None,       #'Ochrona skraplacza przed zamarznięciem lv1',                     
             None,       #'Ochrona skraplacza przed zamarznięciem lv2',
             None,       #'Blokada chłodzenia',
-            None,       #'Za wysoka temperatura na wyjściu',
-            None,       #'Za niska temperatura na wyjściu',
-            'Brak przepływu',
+            'ZaWysokaTemperaturaNaWyjsciu',
+            'ZaNiskaTemperaturaNaWyjściu',
+            'BrakPrzeplywu',
             None,       #'Ochrona PC - zbyt niska temperatura wody',                                 
-            None,       #'Wysoka taryfa',                                            
+            'WysokaTaryfa',                                          
           ]},
         200: { 'type': 'te10', 'name': 'Pk', 'desc': 'Pk - stopień wysterowania sprężarki [%]' },
         208: { 'type': 'mask', 'name': [
             'PompaSkraplacza',                                             
             None,
             None,                                   
-            None,       
-            None,  
+            'Zawor3drCWU',       
+            'PompaCyrCWU', 
             'PompaCO',                         
-            None,    
-            None,      
-            None,   
-            None,   
-            None,
+            'ZaworMieszajacyON',    
+            'ZaworMieszajacyOFF',      
+            'PompaCO2',   
+            'Zawor3drChlodzenie',   
+            'PompaCO3',
             'GrzalkaCWU',                               
             'GrzalkaCO',                                           
           ]},
@@ -77,5 +79,5 @@ class PCCO(BaseDevice):
         332: { 'type': 'bool', 'name': 'Defrost', 'desc': 'Status rozmrażania' },
         408: { 'type': 'te10', 'name': 'CWU', 'desc': 'Temp. ustawiona CWU [°C]' },
         410: { 'type': 'te10', 'name': 'CO1', 'desc': 'Temp. ustawiona CO1 [°C]' },
-        #412: { 'type': 'te10', 'name': 'CO2', 'desc': 'Temp. ustawiona CO2 [°C]' }                                                       
+        412: { 'type': 'te10', 'name': 'CO2', 'desc': 'Temp. ustawiona CO2 [°C]' },                                                     
     }
