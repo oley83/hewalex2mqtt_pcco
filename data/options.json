@@ -3,7 +3,7 @@
   "mqtt_port": 1883,
   "mqtt_authentication": true,
   "mqtt_user": "mqtt",
-  "mqtt_pass": "mqtt_narcyzowa",
+  "mqtt_pass": "mqtt_pwd,
   "Read_only_mode": true,
   "Read_config_enabled": false,
   "Print_mqtt_topics": false,
