@@ -40,6 +40,6 @@ Device_Pcco_MqttTopic: PCCO Mono (prefix tematu MQTT dla pompy ciepła)
 ```
 
 **Dodatek powstał na bazie:**
-krzysztof1111111111 (https://www.elektroda.pl/rtvforum/topic3499254.html) 
-hvdb/hewalex2mqtt-homeassistant-add-on-cv (https://github.com/hvdb/hewalex2mqtt-homeassistant-add-on-cv/tree/main) 
+krzysztof1111111111 (https://www.elektroda.pl/rtvforum/topic3499254.html)  
+hvdb/hewalex2mqtt-homeassistant-add-on-cv (https://github.com/hvdb/hewalex2mqtt-homeassistant-add-on-cv/tree/main)  
 ratajczykmarcin/hewalex_V2 (https://github.com/ratajczykmarcin/hewalex_V2)
