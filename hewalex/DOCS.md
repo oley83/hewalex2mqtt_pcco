@@ -4,7 +4,7 @@ Dodatek Home Assistant Hewalex2MQTT_PCCO
 ### Hewalex2MQTT dodatek do Home Assistant
 
 **Przegląd:**
-Dodatek Hewalex2MQTT do Home Assistant służy jako pomost pomiędzy pompami ciepła Hewalex PCCO Mono a platformą Home Assistant, wykorzystując MQTT jako protokół komunikacyjny. Ten dodatek umożliwia użytkownikom monitorowanie i potencjalne sterowanie pompą ciepła Hewalex PCCO Mono bezpośrednio z interfejsu Home Assistant.
+Dodatek Hewalex2MQTT do Home Assistant służy jako pomost pomiędzy pompami ciepła Hewalex PCCO Mono a platformą Home Assistant, wykorzystując MQTT jako protokół komunikacyjny. Ten dodatek umożliwia użytkownikom monitorowanie i potencjalne sterowanie pompą ciepła Hewalex PCCO Mono bezpośrednio z interfejsu Home Assistant. Narazie możliwy jest odczet danych tylko ze sterownika pompy ciepła. Dane z modułu zabezpieczające PZ HX nie są pobierane.
 
 **Kluczowe funkcje:**
 
@@ -33,8 +33,13 @@ Print_mqtt_topics: false (dodatek listuje w logach podczas startu wszystkie dost
 Serial_timeout": 10  (maksymalny czas odpowiedzi w sekundach konwertera RS485),
 Max_retries: 2 (ilość zapytań sterownika pompy ciepła w przybadku błędu),
 Polling_interval: 60 (interwał w sekundach odpytywania sterownika pompy ciepła o wymagane dane),
-Device_Pcco_Enabled: true (Włączenie komunikacji z pompą ciepła PCCO Mono)
-Device_Pcco_Address: 192.168.0.70 (adres ip konwertera RS485 do Enthernet)
-Device_Pcco_Port: 4196 (port konwertera RS485 do Enthernet)
-Device_Pcco_MqttTopic: PCCO Mono (prefix tematu MQTT dla pompy ciepła).
+Device_Pcco_Enabled: true (Włączenie komunikacji z pompą ciepła PCCO Mono),
+Device_Pcco_Address: 192.168.0.70 (adres ip konwertera RS485 do Enthernet),
+Device_Pcco_Port: 4196 (port konwertera RS485 do Enthernet),
+Device_Pcco_MqttTopic: PCCO Mono (prefix tematu MQTT dla pompy ciepła)
 ```
+
+**Dodatek powstał na bazie:**
+krzysztof1111111111 (https://www.elektroda.pl/rtvforum/topic3499254.html)
+hvdb/hewalex2mqtt-homeassistant-add-on-cv (https://github.com/hvdb/hewalex2mqtt-homeassistant-add-on-cv/tree/main)
+ratajczykmarcin/hewalex_V2 (https://github.com/ratajczykmarcin/hewalex_V2)
