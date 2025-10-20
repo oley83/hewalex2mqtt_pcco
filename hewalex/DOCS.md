@@ -21,21 +21,20 @@ Dodatek Hewalex2MQTT do Home Assistant służy jako pomost pomiędzy pompami cie
 6. **Ulepszona automatyka**: Dzięki zintegrowaniu danych z pompy ciepła z Home Assistant użytkownicy mogą konfigurować wyrafinowaną automatyzację, scenariusze i wyzwalacze w oparciu o stan i odczyty pompy ciepła.
 
 ## Konfiguracja dodatku:
-mqtt_ip: 192.168.1.10
-mqtt_port: 1883
-mqtt_authentication: true
-mqtt_user: mqttuser
-mqtt_pass: mqttpass
-Device_Zps_Enabled: false
-Device_Zps_Address: 192.168.1.7
-Device_Zps_Port: 8899
-Device_Zps_MqttTopic: SolarBoiler
-Device_Pcwu_Enabled: true
-Device_Pcwu_Address: 192.168.1.93
-Device_Pcwu_Port: 8899
-Device_Pcwu_MqttTopic: Heatpump
-Device_Pcwu2_Enabled: true
-Device_Pcwu2_Address: 192.168.1.93
-Device_Pcwu2_Port: 8899
-Device_Pcwu2_MqttTopic: Heatpump2
+```
+mqtt_ip: core-mosquitto (ip lub nazwa hosta brokera MQTT),
+mqtt_port: 1883 (port brokera MQTT),
+mqtt_authentication: true (autoryzacja użytkownika MQTT),
+mqtt_user: mqtt (nazwa uzytkownika MQTT),
+mqtt_pass: mqtt_pwd (hasło użytkownika MQTT),
+Read_only_mode: true (wyłącza możliwośc wysyłania komunikatów do pompy ciepła),
+Read_config_enabled: false (odczyt rejestrów konfiguracyjnych),
+Print_mqtt_topics: false (dodatek listuje w logach podczas startu wszystkie dostępne tematy MQTT),
+Serial_timeout": 10  (maksymalny czas odpowiedzi w sekundach konwertera RS485),
+Max_retries: 2 (ilość zapytań sterownika pompy ciepła w przybadku błędu),
+Polling_interval: 60 (interwał w sekundach odpytywania sterownika pompy ciepła o wymagane dane),
+Device_Pcco_Enabled: true (Włączenie komunikacji z pompą ciepła PCCO Mono)
+Device_Pcco_Address: 192.168.0.70 (adres ip konwertera RS485 do Enthernet)
+Device_Pcco_Port: 4196 (port konwertera RS485 do Enthernet)
+Device_Pcco_MqttTopic: PCCO Mono (prefix tematu MQTT dla pompy ciepła).
 ```
