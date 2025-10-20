@@ -1,5 +1,4 @@
 # Changelog
-*Current version can also be found in /hewalex/config.json*
 
 ## 0.1.0
 - Odczyt parametrów pomp ciepła Hewalex PCCO Mono
