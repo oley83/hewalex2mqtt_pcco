@@ -82,7 +82,7 @@ class PCCO(BaseDevice):
             None,                                   
             'GrzTacy',       
             'GrzKartSpr', 
-            None,                         
+            'Zawor4dr',                         
             'FanLow',    
             'FanHigh',                                   
             None,                                           
