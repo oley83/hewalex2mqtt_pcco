@@ -12,11 +12,11 @@ import time
 # polling interval - ZWIĘKSZONY dla stabilności
 get_status_interval = 60.0
 
-# Controller_odczyt (Master) - identyfikator ID tego skryptu w komunikacji do odczytu danych
+# Controller_odczyt (Master - EKO-LAN) - identyfikator ID tego skryptu w komunikacji do odczytu danych
 conHardId = 1
 conSoftId = 1
 
-# Controller_zapis (Master) - alternatywny ID tego skryptu do zapisu danych w sterowniku pompy
+# Controller_zapis (Master - EKO-LAN) - alternatywny ID tego skryptu do zapisu danych w sterowniku pompy
 conHardId2 = 1
 conSoftId2 = 1
 
