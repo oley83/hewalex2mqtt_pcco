@@ -13,5 +13,7 @@
   "Device_Pcco_Enabled": true,
   "Device_Pcco_Address": "192.168.0.70",
   "Device_Pcco_Port": 4196,
-  "Device_Pcco_MqttTopic": "PCCO Mono"
+  "Device_Pcco_MqttTopic": "PCCO Mono",
+  "Device_Pzhx_Enabled": true,
+  "Device_Pzhx_MqttTopic": "PZHX Mono"
 }
