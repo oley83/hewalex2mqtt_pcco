@@ -6,7 +6,7 @@ from .base import BaseDevice
 # https://www.elektroda.pl/rtvforum/topic3499254.html
 
 
-class PCCO(BaseDevice):
+class PZHX(BaseDevice):
 
     # PCCO sterowany jest za pomocą kontrolera PG-426-P04 i modułu wykonawczego MG-426-P04
     # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
