@@ -12,7 +12,7 @@ class PZHX(BaseDevice):
     # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
     REG_MAX_ADR = 279
     REG_MAX_NUM = 60
-    REG_CONFIG_START = 280       #Prawdopodobnie pierwszy rejestr kongiguracj, jeśli się zmieni to nie czyta wszystkich wartości
+    REG_CONFIG_START = 220       #Prawdopodobnie pierwszy rejestr kongiguracj, jeśli się zmieni to nie czyta wszystkich wartości
 
     registers = {
 
