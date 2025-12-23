@@ -27,7 +27,7 @@ devSoftId = 2
 
 # Device ID (Slave - PZ HX) - identyfikator ID modułu zabezpieczającego PZ HX
 devHardId2 = 11
-devSoftId2 = 2
+devSoftId2 = 1
 
 # mqtt
 flag_connected_mqtt = 0
