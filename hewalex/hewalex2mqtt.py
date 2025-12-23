@@ -25,7 +25,7 @@ conSoftId2 = 1
 devHardId = 2
 devSoftId = 2
 
-# Device ID (Slave - PZ-HX) - identyfikator ID modułu zabezpieczającego PZ-HX
+# Device ID (Slave - PZ HX) - identyfikator ID modułu zabezpieczającego PZ-HX
 devHardId2 = 11
 devSoftId2 = 1
 
@@ -252,6 +252,7 @@ def on_message_serial(obj, h, sh, m):
         # Określ temat MQTT na podstawie typu urządzenia
         if isinstance(obj, PCCO):
             topic = _Device_Pcco_MqttTopic
+            logger.debug(f"PZHX RAW: {m.hex()}")     #PZ HX - surowa ramka
         elif isinstance(obj, PZHX):
             topic = _Device_Pzhx_MqttTopic
         else:
@@ -304,8 +305,8 @@ def device_readregisters_enqueue():
         threading.Thread(target=read_pcco_wrapper, daemon=True).start()
     
     if _Device_Pzhx_Enabled:
-        # Losowe opóźnienie dla PZ-HX (4-10s) dla rozłożenia obciążenia
-        pzhx_delay = random.uniform(4, 10)
+        # Losowe opóźnienie dla PZ-HX (10-15s) dla rozłożenia obciążenia
+        pzhx_delay = random.uniform(10, 15)
         threading.Timer(pzhx_delay, lambda: threading.Thread(target=read_pzhx_wrapper, daemon=True).start()).start()
 
 def read_pcco_wrapper():
