@@ -4,14 +4,12 @@ from .base import BaseDevice
 # Based on work by krzysztof1111111111
 # https://www.elektroda.pl/rtvforum/topic3499254.html
 
-
 class PZHX(BaseDevice):
 
-    # PCCO sterowany jest za pomocą kontrolera PG-426-P04 i modułu wykonawczego MG-426-P04
-    # Adresy rejestrów dla modułu wykonawczego MG-426-P04 a nie kontrolera PG-426-P04
+    REG_STATUS_START = 100
     REG_MAX_ADR = 279
     REG_MAX_NUM = 60
-    REG_CONFIG_START = 220       #Prawdopodobnie pierwszy rejestr kongiguracj, jeśli się zmieni to nie czyta wszystkich wartości
+    REG_CONFIG_START = 220
 
     registers = {
 
