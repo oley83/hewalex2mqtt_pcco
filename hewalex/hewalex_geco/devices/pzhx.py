@@ -6,9 +6,9 @@ from .base import BaseDevice
 
 class PZHX(BaseDevice):
 
-    REG_MAX_ADR = 400
+    REG_MAX_ADR = 300
     REG_MAX_NUM = 60
-    REG_CONFIG_START = 220
+    REG_CONFIG_START = 250
 
     registers = {
 
@@ -104,58 +104,7 @@ class PZHX(BaseDevice):
         296: { 'type': 'te10', 'name': 'R_296', 'desc': '296' },
         298: { 'type': 'te10', 'name': 'R_298', 'desc': '298' },
         300: { 'type': 'te10', 'name': 'R_300', 'desc': '300' },
-        302: { 'type': 'te10', 'name': 'R_302', 'desc': '302' },
-        304: { 'type': 'te10', 'name': 'R_304', 'desc': '304' },
-        306: { 'type': 'te10', 'name': 'R_306', 'desc': '306' },
-        308: { 'type': 'te10', 'name': 'R_308', 'desc': '308' },
-        310: { 'type': 'te10', 'name': 'R_310', 'desc': '310' },
-        312: { 'type': 'te10', 'name': 'R_312', 'desc': '312' },
-        314: { 'type': 'te10', 'name': 'R_314', 'desc': '314' },
-        316: { 'type': 'te10', 'name': 'R_316', 'desc': '316' },
-        318: { 'type': 'te10', 'name': 'R_318', 'desc': '318' },
-        320: { 'type': 'te10', 'name': 'R_320', 'desc': '320' },
-        322: { 'type': 'te10', 'name': 'R_322', 'desc': '322' },
-        324: { 'type': 'te10', 'name': 'R_324', 'desc': '324' },
-        326: { 'type': 'te10', 'name': 'R_326', 'desc': '326' },
-        328: { 'type': 'te10', 'name': 'R_328', 'desc': '328' },
-        330: { 'type': 'te10', 'name': 'R_330', 'desc': '330' },
-        332: { 'type': 'te10', 'name': 'R_332', 'desc': '332' },
-        334: { 'type': 'te10', 'name': 'R_334', 'desc': '334' },
-        336: { 'type': 'te10', 'name': 'R_336', 'desc': '336' },
-        338: { 'type': 'te10', 'name': 'R_338', 'desc': '338' },
-        340: { 'type': 'te10', 'name': 'R_340', 'desc': '340' },
-        342: { 'type': 'te10', 'name': 'R_342', 'desc': '342' },
-        344: { 'type': 'te10', 'name': 'R_344', 'desc': '344' },
-        346: { 'type': 'te10', 'name': 'R_346', 'desc': '346' },
-        348: { 'type': 'te10', 'name': 'R_348', 'desc': '348' },
-        350: { 'type': 'te10', 'name': 'R_350', 'desc': '350' },
-        352: { 'type': 'te10', 'name': 'R_352', 'desc': '352' },
-        354: { 'type': 'te10', 'name': 'R_354', 'desc': '354' },
-        356: { 'type': 'te10', 'name': 'R_356', 'desc': '356' },
-        358: { 'type': 'te10', 'name': 'R_358', 'desc': '358' },
-        360: { 'type': 'te10', 'name': 'R_360', 'desc': '360' },
-        362: { 'type': 'te10', 'name': 'R_362', 'desc': '362' },
-        364: { 'type': 'te10', 'name': 'R_364', 'desc': '364' },
-        366: { 'type': 'te10', 'name': 'R_366', 'desc': '366' },
-        368: { 'type': 'te10', 'name': 'R_368', 'desc': '368' },
-        370: { 'type': 'te10', 'name': 'R_370', 'desc': '370' },
-        372: { 'type': 'te10', 'name': 'R_372', 'desc': '372' },
-        374: { 'type': 'te10', 'name': 'R_374', 'desc': '374' },
-        376: { 'type': 'te10', 'name': 'R_376', 'desc': '376' },
-        378: { 'type': 'te10', 'name': 'R_378', 'desc': '378' },
-        380: { 'type': 'te10', 'name': 'R_380', 'desc': '380' },
 
-            # Rejestry konfiguracji
-        
-        382: { 'type': 'te10', 'name': 'R_382', 'desc': '382' },
-        384: { 'type': 'te10', 'name': 'R_384', 'desc': '384' },
-        386: { 'type': 'te10', 'name': 'R_386', 'desc': '386' },
-        388: { 'type': 'te10', 'name': 'R_388', 'desc': '388' },
-        390: { 'type': 'te10', 'name': 'R_390', 'desc': '390' },
-        392: { 'type': 'te10', 'name': 'R_392', 'desc': '392' },
-        394: { 'type': 'te10', 'name': 'R_394', 'desc': '394' },
-        396: { 'type': 'te10', 'name': 'R_396', 'desc': '396' },
-        398: { 'type': 'te10', 'name': 'R_398', 'desc': '398' },
                             
     }
 
