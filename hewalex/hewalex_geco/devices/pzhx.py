@@ -8,9 +8,9 @@ class PZHX(BaseDevice):
 
     # PZ HX sterowany jest za pomocą kontrolera g922p02
     
-    REG_MAX_ADR = 400
+    REG_MAX_ADR = 302
     REG_MAX_NUM = 60
-    REG_CONFIG_START = 250
+    REG_CONFIG_START = 242
 
     registers = {
 
