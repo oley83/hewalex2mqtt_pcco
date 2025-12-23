@@ -25,7 +25,7 @@ conSoftId2 = 1
 devHardId = 2
 devSoftId = 2
 
-# Device ID (Slave - PZ HX) - identyfikator ID modułu zabezpieczającego PZ-HX
+# Device ID (Slave - PZ HX) - identyfikator ID modułu zabezpieczającego PZ HX
 devHardId2 = 11
 devSoftId2 = 1
 
@@ -126,7 +126,7 @@ def initConfiguration():
     else:
         _Device_Pcco_MqttTopic = config['Device_Pcco_MqttTopic']
 
-    # PZ-HX Device Configuration
+    # PZ HX Device Configuration
     global _Device_Pzhx_Enabled
     if (os.getenv('Device_Pzhx_Enabled') != None):        
         _Device_Pzhx_Enabled = os.getenv('Device_Pzhx_Enabled') == "True"
@@ -176,7 +176,7 @@ def initConfiguration():
         _Print_Mqtt_Topics = config.get('Print_mqtt_topics', False)  # Domyślnie wyłączone
     
     logger.info(f"PCCO Configuration: Enabled={_Device_Pcco_Enabled}, Address={_Device_Pcco_Address}:{_Device_Pcco_Port}, Topic={_Device_Pcco_MqttTopic}")
-    logger.info(f"PZ-HX Configuration: Enabled={_Device_Pzhx_Enabled}, Address={_Device_Pcco_Address}:{_Device_Pcco_Port}, Topic={_Device_Pzhx_MqttTopic}")
+    logger.info(f"PZ HX Configuration: Enabled={_Device_Pzhx_Enabled}, Address={_Device_Pcco_Address}:{_Device_Pcco_Port}, Topic={_Device_Pzhx_MqttTopic}")
     logger.info(f"Read-only mode: {_Read_Only_Mode}")
     logger.info(f"Read config enabled: {_Read_Config_Enabled}")
     logger.info(f"Print MQTT topics: {_Print_Mqtt_Topics}")
@@ -206,7 +206,7 @@ def start_mqtt():
             logger.info('subscribed to : ' + _Device_Pzhx_MqttTopic + '/Command/#')    
             client.subscribe(_Device_Pzhx_MqttTopic + '/Command/#', qos=1)
         else:
-            logger.info('Read-only mode: MQTT commands disabled for PZ-HX')
+            logger.info('Read-only mode: MQTT commands disabled for PZ HX')
         
     client.loop_start()
 
@@ -230,10 +230,10 @@ def on_message_mqtt(client, userdata, message):
             command = arr[2]
             logger.info('Received PCCO command ' + topic + ' with payload: ' + payload)
             writePccoConfig(command, payload)
-        # PZ-HX Command
+        # PZ HX Command
         elif len(arr) == 3 and arr[0] == _Device_Pzhx_MqttTopic and arr[1] == 'Command':            
             command = arr[2]
-            logger.info('Received PZ-HX command ' + topic + ' with payload: ' + payload)
+            logger.info('Received PZ HX command ' + topic + ' with payload: ' + payload)
             writePzhxConfig(command, payload)
         else:
             logger.debug('Cannot process message on topic ' + topic)
@@ -306,7 +306,7 @@ def device_readregisters_enqueue():
         threading.Thread(target=read_pcco_wrapper, daemon=True).start()
     
     if _Device_Pzhx_Enabled:
-        # Losowe opóźnienie dla PZ-HX (10-15s) dla rozłożenia obciążenia
+        # Losowe opóźnienie dla PZ HX (10-15s) dla rozłożenia obciążenia
         pzhx_delay = random.uniform(10, 15)
         threading.Timer(pzhx_delay, lambda: threading.Thread(target=read_pzhx_wrapper, daemon=True).start()).start()
 
@@ -326,7 +326,7 @@ def read_pzhx_wrapper():
             time.sleep(3)
             readPzhxConfig()
     except Exception as e:
-        logger.error(f"Error in PZ-HX read wrapper: {e}")
+        logger.error(f"Error in PZ HX read wrapper: {e}")
 
 def readPCCO():    #Odczyt statusów z pompy PCCO
     def _read_status():
@@ -378,9 +378,9 @@ def readPZHX():    #Odczyt statusów z modułu PZ HX
         return True
     
     read_with_retry(_read_status, "PZ HX status read")
-    logger.debug("PZ-HX status registers read successfully")
+    logger.debug("PZ HX status registers read successfully")
 
-def readPzhxConfig():    #Odczyt konfiguracji z modułu PZ-HX
+def readPzhxConfig():    #Odczyt konfiguracji z modułu PZ HX
     def _read_config():
         ser = serial.serial_for_url(f"socket://{_Device_Pcco_Address}:{_Device_Pcco_Port}", 
                                    timeout=_SERIAL_TIMEOUT)
@@ -389,10 +389,10 @@ def readPzhxConfig():    #Odczyt konfiguracji z modułu PZ-HX
         ser.close()
         return True
     
-    read_with_retry(_read_config, "PZ-HX config read")
-    logger.debug("PZ-HX config registers read successfully")
+    read_with_retry(_read_config, "PZ HX config read")
+    logger.debug("PZ HX config registers read successfully")
 
-def writePzhxConfig(registerName, payload):    #zapis do modułu PZ-HX
+def writePzhxConfig(registerName, payload):    #zapis do modułu PZ HX
     if _Read_Only_Mode:  #Sprawdzanie trybu READ-ONLY
         logger.warning(f"Read-only mode enabled. Ignoring write command: {registerName} = {payload}")
         return
@@ -403,9 +403,9 @@ def writePzhxConfig(registerName, payload):    #zapis do modułu PZ-HX
         dev = PZHX(conHardId2, conSoftId2, devHardId2, devSoftId2, on_message_serial)            
         dev.write(ser, registerName, payload)
         ser.close()
-        logger.info(f"PZ-HX config written: {registerName} = {payload}")
+        logger.info(f"PZ HX config written: {registerName} = {payload}")
     except Exception as e:
-        logger.error(f"Error writing PZ-HX config: {e}")
+        logger.error(f"Error writing PZ HX config: {e}")
         raise
 
 def printPccoMqttTopics():       #Wyświetla listę tematów MQTT - dostepne rejestry PCCO
@@ -423,8 +423,8 @@ def printPccoMqttTopics():       #Wyświetla listę tematów MQTT - dostepne rej
         if k > dev.REG_CONFIG_START:          
             print('| ' + _Device_Pcco_MqttTopic + '/Command/' + str(v['name']) + ' | ' + v.get('type') + ' | ' + str(v.get('desc')))
 
-def printPzhxMqttTopics():       #Wyświetla listę tematów MQTT - dostepne rejestry PZ-HX
-    print('\nPZ-HX MQTT Topics:')
+def printPzhxMqttTopics():       #Wyświetla listę tematów MQTT - dostepne rejestry PZ HX
+    print('\nPZ HX MQTT Topics:')
     print('|         Temat           |    Type     |                  Opis                | ')
     print('| ----------------------- | ----------- | -------------------------------------|')
     dev = PZHX(conHardId, conSoftId, devHardId2, devSoftId2, on_message_serial)
