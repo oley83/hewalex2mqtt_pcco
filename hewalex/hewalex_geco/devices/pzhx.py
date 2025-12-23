@@ -16,6 +16,7 @@ class PZHX(BaseDevice):
     registers = {
 
         # Rejestry statusów
+        100: { 'type': 'date', 'name': 'date', 'desc': 'Date' },
         120: { 'type': 'date', 'name': 'date', 'desc': 'Date' },                      
         124: { 'type': 'time', 'name': 'time', 'desc': 'Time' },                                         
         130: { 'type': 'te10', 'name': 'T1', 'desc': 'T1 - temp. CWU [°C]' },                         
