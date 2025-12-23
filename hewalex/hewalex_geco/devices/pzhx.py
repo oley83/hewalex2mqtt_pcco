@@ -95,8 +95,8 @@ class PZHX(BaseDevice):
         278: { 'type': 'te10', 'name': 'R_278', 'desc': '278' },
         280: { 'type': 'te10', 'name': 'R_280', 'desc': '280' },
         282: { 'type': 'te10', 'name': 'R_282', 'desc': '282' },
-        284: { 'type': 'te10', 'name': 'PT1_2', 'desc': 'PT1 - temp. cieczy na wylocie [°C]' },
-        286: { 'type': 'te10', 'name': 'PT2_2', 'desc': 'PT2 - temp. cieczy na wylocie [°C]' },
+        #284: { 'type': 'te10', 'name': 'PT1_2', 'desc': 'PT1 - temp. cieczy na wylocie [°C]' },    #to samo co 184
+        #286: { 'type': 'te10', 'name': 'PT2_2', 'desc': 'PT2 - temp. cieczy na wylocie [°C]' },    #to samo co 185
         288: { 'type': 'te10', 'name': 'R_288', 'desc': '288' },
         290: { 'type': 'te10', 'name': 'R_290', 'desc': '290' },
         292: { 'type': 'te10', 'name': 'R_292', 'desc': '292' },
