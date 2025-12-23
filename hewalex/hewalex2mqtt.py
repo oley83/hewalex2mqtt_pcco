@@ -252,9 +252,10 @@ def on_message_serial(obj, h, sh, m):
         # Określ temat MQTT na podstawie typu urządzenia
         if isinstance(obj, PCCO):
             topic = _Device_Pcco_MqttTopic
-            logger.debug(f"PZHX RAW: {m.hex()}")     #PZ HX - surowa ramka
+            #logger.debug(f"PCCO RAW: {m.hex()}")     #PCCO - surowa ramka
         elif isinstance(obj, PZHX):
             topic = _Device_Pzhx_MqttTopic
+            logger.debug(f"PZHX RAW: {m.hex()}")     #PZ HX - surowa ramka
         else:
             logger.warning(f"Unknown device type: {type(obj)}")
             return False
