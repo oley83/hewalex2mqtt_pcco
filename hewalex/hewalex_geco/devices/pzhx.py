@@ -6,7 +6,6 @@ from .base import BaseDevice
 
 class PZHX(BaseDevice):
 
-    REG_STATUS_START = 101
     REG_MAX_ADR = 279
     REG_MAX_NUM = 60
     REG_CONFIG_START = 220
@@ -14,7 +13,6 @@ class PZHX(BaseDevice):
     registers = {
 
         # Rejestry statusów
-        105: { 'type': 'date', 'name': 'date', 'desc': 'Date' },
         120: { 'type': 'date', 'name': 'date', 'desc': 'Date' },                      
         124: { 'type': 'time', 'name': 'time', 'desc': 'Time' },                                         
         130: { 'type': 'te10', 'name': 'T1', 'desc': 'T1 - temp. CWU [°C]' },                         
