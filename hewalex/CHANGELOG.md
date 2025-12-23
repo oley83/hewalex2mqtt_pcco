@@ -6,6 +6,3 @@
 
 ## 0.1.1
 - dodano kilka parametrów odczytu danych
-
-## 0.2.0
-- dodano obsługę modułu zabezpieczającego PZ HX
