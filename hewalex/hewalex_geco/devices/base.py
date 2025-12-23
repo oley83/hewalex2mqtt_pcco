@@ -120,6 +120,8 @@ class BaseDevice:
                     val = self.getTemp(m[adr:], 1.0)
                 elif reg['type'] == 'te10':
                     val = self.getTemp(m[adr:], 10.0)
+                elif reg['type'] == 't100':
+                    val = self.getTemp(m[adr:], 100.0)
                 elif reg['type'] == 'fl10':
                     val = self.getWord(m[adr:]) / 10.0
                 elif reg['type'] == 'f100':
@@ -309,6 +311,8 @@ class BaseDevice:
                 val = int(val)
             elif reg['type'] == 'te10':
                 val = int(val) * 10
+            elif reg['type'] == 't100':
+                val = int(val) * 100
             elif reg['type'] == 'fl10':
                 val = float(val) * 10
             elif reg['type'] == 'f100':
