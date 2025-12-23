@@ -21,7 +21,7 @@ class PZHX(BaseDevice):
         136: { 'type': 'te10', 'name': 'T4', 'desc': 'T4 - temp. czynnika za skraplaczem [°C]' },                                                 
         140: { 'type': 'fl100', 'name': 'U1', 'desc': 'U1 - napięcie zasilania [V]' },                          
         142: { 'type': 'te10', 'name': 'T7', 'desc': 'T7 - temp. powrotu z instalacji CO [°C]' },                         
-        144: { 'type': 'fl100', 'name': 'U2', 'desc': 'U2 - napięcie zasilania - pomiar dodatkowy [V]' },
+        144: { 'type': 'te10', 'name': 'U2', 'desc': 'U2 - napięcie zasilania - pomiar dodatkowy [V]' },
         146: { 'type': 'te10', 'name': 'T9', 'desc': 'T9 - temp. powrotu z cyrkulacji [°C]' },
         150: { 'type': 'te10', 'name': 'T11', 'desc': 'T11 - temp. za mieszaczem CO / na wylocie z bufora [°C]' },
         152: { 'type': 'te10', 'name': 'T12', 'desc': 'T12 - temp. pokojowa obiegu CO1 [°C]' },
