@@ -6,8 +6,6 @@ hvdb/hewalex2mqtt-homeassistant-add-on-cv (https://github.com/hvdb/hewalex2mqtt-
 ratajczykmarcin/hewalex_V2 (https://github.com/ratajczykmarcin/hewalex_V2)  
 krzysztof1111111111 (https://www.elektroda.pl/rtvforum/topic3499254.html). 
 
-Dane z jednostki zabezpieczającej PZ HX nie są na razie pobierane.
-
 Instalacja:
 Ustawienia-Dodatki-Sklep z dodatkami-trzy kropki (...)-Repozytoria
 
