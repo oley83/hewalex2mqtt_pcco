@@ -255,7 +255,7 @@ def on_message_serial(obj, h, sh, m):
             #logger.debug(f"PCCO RAW: {m.hex()}")     #PCCO - surowa ramka
         elif isinstance(obj, PZHX):
             topic = _Device_Pzhx_MqttTopic
-            logger.debug(f"PZHX RAW: {m.hex()}")     #PZ HX - surowa ramka
+            #logger.debug(f"PZHX RAW: {m.hex()}")     #PZ HX - surowa ramka
         else:
             logger.warning(f"Unknown device type: {type(obj)}")
             return False
@@ -368,7 +368,7 @@ def writePccoConfig(registerName, payload):    #zapis do pompy PCCO
         logger.error(f"Error writing PCCO config: {e}")
         raise
 
-def readPZHX():    #Odczyt statusów z modułu PZ-HX
+def readPZHX():    #Odczyt statusów z modułu PZ HX
     def _read_status():
         ser = serial.serial_for_url(f"socket://{_Device_Pcco_Address}:{_Device_Pcco_Port}", 
                                    timeout=_SERIAL_TIMEOUT)
@@ -377,7 +377,7 @@ def readPZHX():    #Odczyt statusów z modułu PZ-HX
         ser.close()
         return True
     
-    read_with_retry(_read_status, "PZ-HX status read")
+    read_with_retry(_read_status, "PZ HX status read")
     logger.debug("PZ-HX status registers read successfully")
 
 def readPzhxConfig():    #Odczyt konfiguracji z modułu PZ-HX
