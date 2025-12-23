@@ -6,6 +6,8 @@ from .base import BaseDevice
 
 class PZHX(BaseDevice):
 
+    # PZ HX sterowany jest za pomocą kontrolera g922p02
+    
     REG_MAX_ADR = 400
     REG_MAX_NUM = 60
     REG_CONFIG_START = 250
@@ -97,13 +99,11 @@ class PZHX(BaseDevice):
         282: { 'type': 'te10', 'name': 'R_282', 'desc': '282' },
         #284: { 'type': 'te10', 'name': 'PT1_2', 'desc': 'PT1 - temp. cieczy na wylocie [°C]' },    #to samo co 184
         #286: { 'type': 'te10', 'name': 'PT2_2', 'desc': 'PT2 - temp. cieczy na wylocie [°C]' },    #to samo co 185
+          # Rejestry konfiguracji
         288: { 'type': 'te10', 'name': 'R_288', 'desc': '288' },
         290: { 'type': 'te10', 'name': 'R_290', 'desc': '290' },
         292: { 'type': 'te10', 'name': 'R_292', 'desc': '292' },
         294: { 'type': 'te10', 'name': 'R_294', 'desc': '294' },
-        296: { 'type': 'te10', 'name': 'R_296', 'desc': '296' },
-
-
-                            
+        296: { 'type': 'te10', 'name': 'R_296', 'desc': '296' },                            
     }
 
