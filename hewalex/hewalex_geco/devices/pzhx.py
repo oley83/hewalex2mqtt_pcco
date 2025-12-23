@@ -66,7 +66,7 @@ class PZHX(BaseDevice):
         220: { 'type': 'te10', 'name': 'R_220', 'desc': '220' },
         222: { 'type': 'te10', 'name': 'R_222', 'desc': '222' },
         224: { 'type': 'te10', 'name': 'R_224', 'desc': '224' },
-        226: { 'type': 'te10', 'name': 'R_226', 'desc': '226' },
+        226: { 'type': 'te10', 'name': 'Q', 'desc': 'Q - natężenie przepływu [l/min]' },
         228: { 'type': 'te10', 'name': 'R_228', 'desc': '228' },
         230: { 'type': 'te10', 'name': 'R_230', 'desc': '230' },
         232: { 'type': 'te10', 'name': 'R_232', 'desc': '232' },
