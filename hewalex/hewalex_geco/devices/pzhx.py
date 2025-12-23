@@ -6,7 +6,7 @@ from .base import BaseDevice
 
 class PZHX(BaseDevice):
 
-    REG_MAX_ADR = 300
+    REG_MAX_ADR = 400
     REG_MAX_NUM = 60
     REG_CONFIG_START = 250
 
