@@ -102,8 +102,7 @@ class PZHX(BaseDevice):
         292: { 'type': 'te10', 'name': 'R_292', 'desc': '292' },
         294: { 'type': 'te10', 'name': 'R_294', 'desc': '294' },
         296: { 'type': 'te10', 'name': 'R_296', 'desc': '296' },
-        298: { 'type': 'te10', 'name': 'R_298', 'desc': '298' },
-        300: { 'type': 'te10', 'name': 'R_300', 'desc': '300' },
+
 
                             
     }
