@@ -18,7 +18,8 @@ class PZHX(BaseDevice):
         130: { 'type': 'te10', 'name': 'T1', 'desc': 'T1 - temp. CWU [°C]' },                         
         132: { 'type': 'te10', 'name': 'T2', 'desc': 'T2 - temp. bufora CO [°C]' },                        
         134: { 'type': 'te10', 'name': 'T3', 'desc': 'T3 - temp. wody na wlocie do skraplacza [°C]' },                         
-        136: { 'type': 'te10', 'name': 'T4', 'desc': 'T4 - temp. czynnika za skraplaczem [°C]' },                                                 
+        136: { 'type': 'te10', 'name': 'T4', 'desc': 'T4 - temp. czynnika za skraplaczem [°C]' },
+        138: { 'type': 'te10', 'name': 'I1', 'desc': 'I1 - natężenie prądu [A]' },   
         140: { 'type': 't100', 'name': 'U1', 'desc': 'U1 - napięcie zasilania [V]' },                          
         142: { 'type': 'te10', 'name': 'T7', 'desc': 'T7 - temp. powrotu z instalacji CO [°C]' },                         
         144: { 'type': 't100', 'name': 'U2', 'desc': 'U2 - napięcie zasilania - pomiar dodatkowy [V]' },
@@ -32,8 +33,8 @@ class PZHX(BaseDevice):
         
   
         # Rejestry konfiguracji
-        240: { 'type': 'te10', 'name': 'Ta', 'desc': 'Ta - temp. powietrza na wlocie do pomy ciepła [°C]' },
+        242: { 'type': 'te10', 'name': 'PT1', 'desc': 'PT1 - temp. cieczy na wylocie [°C]' },
         250: { 'type': 'te10', 'name': 'Tp', 'desc': 'Tp - temp. czynnika w parowniku [°C]' },
-        260: { 'type': 'te10', 'name': 'CO2', 'desc': 'Temp. ustawiona CO2 [°C]' },                                                     
+        260: { 'type': 'te10', 'name': 'Ua', 'desc': 'Ua - napięcie akumulatora [V]' },                                                     
     }
 
