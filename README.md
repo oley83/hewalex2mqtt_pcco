@@ -1,6 +1,8 @@
 # hewalex2mqtt_pcco
 Dodatek do Home Assistant służacy do odczytu parametrów z pomp ciepła Hewalex PCCO Mono.
 
+Obsługa modułu zabezpieczającego PZ HX nie działa.
+
 Dodatek powstał na bazie:  
 hvdb/hewalex2mqtt-homeassistant-add-on-cv (https://github.com/hvdb/hewalex2mqtt-homeassistant-add-on-cv/tree/main)  
 ratajczykmarcin/hewalex_V2 (https://github.com/ratajczykmarcin/hewalex_V2)  
