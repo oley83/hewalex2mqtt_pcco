@@ -24,7 +24,7 @@ class PZHX(BaseDevice):
         136: { 'type': 'te10', 'name': 'R_136', 'desc': '136' },
         138: { 'type': 'te10', 'name': 'I1', 'desc': 'I1 - natężenie prądu [A]' },  
         140: { 'type': 't100', 'name': 'U1', 'desc': 'U1 - napięcie zasilania [V]' },
-        142: { 'type': 'te10', 'name': 'T7', 'desc': 'T7 - temp. powrotu z instalacji CO [°C]' },                         
+        142: { 'type': 'te10', 'name': 'R_142', 'desc': '142' },                         
         144: { 'type': 't100', 'name': 'U2', 'desc': 'U2 - napięcie zasilania - pomiar dodatkowy [V]' },
         146: { 'type': 'te10', 'name': 'R_146', 'desc': '146' },
         148: { 'type': 'te10', 'name': 'R_148', 'desc': '148' },
